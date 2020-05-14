@@ -1,7 +1,7 @@
 ﻿namespace ApplicationApp.Interfaces
 {
     using Entities;
-    public interface ILivroApp : IGenericApp<Livro>
+    public interface ILetorApp : IGenericApp<Letor>
     {
     }
 }

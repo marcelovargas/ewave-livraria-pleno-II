@@ -1,11 +1,10 @@
-﻿using ApplicationApp.Interfaces;
-using Domain;
-using Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace ApplicationApp.OpenApp
+﻿namespace ApplicationApp.OpenApp
 {
+    using ApplicationApp.Interfaces;
+    using Domain;
+    using Entities;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     public class LivroApp : ILivroApp
     {
         ILivro _ILivro;
@@ -25,10 +24,10 @@ namespace ApplicationApp.OpenApp
 
         public async Task<Livro> GetEntityById(int Id)
         {
-            var  livro =  await _ILivro.GetEntityById(Id);
-            if (livro != null)
+            var record = await _ILivro.GetEntityById(Id);
+            if (record != null)
             {
-                return livro;
+                return record;
             }
             else
             {
@@ -38,8 +37,8 @@ namespace ApplicationApp.OpenApp
 
 
         public async Task<List<Livro>> List()
-        {   
-           var list = await _ILivro.List();
+        {
+            var list = await _ILivro.List();
             if (list != null)
             {
                 return list;

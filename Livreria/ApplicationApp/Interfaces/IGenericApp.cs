@@ -8,8 +8,8 @@ namespace ApplicationApp.Interfaces
         Task Add(T Objeto);
         Task Update(T Objeto);
         Task Delete(T Objeto);
-       // Task<T> GetEntityById(int Id);
-        //Task<List<T>> List();
+        Task<T> GetEntityById(int Id);
+        Task<List<T>> List();
 
     }
 }
