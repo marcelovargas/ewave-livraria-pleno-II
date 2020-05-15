@@ -1,4 +1,7 @@
-﻿namespace Entities
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace Entities
 {
     public class Instituicao : Base
     {
@@ -6,5 +9,7 @@
         public string CPNJ { get; set; }
         public string Telefone { get; set; }
 
+        [JsonIgnore]
+        public virtual IEnumerable<Usuario> Usuarios { get; set; }
     }
 }

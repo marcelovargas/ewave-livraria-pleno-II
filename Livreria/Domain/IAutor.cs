@@ -1,7 +1,7 @@
 ﻿namespace Domain
 {
     using Entities;
-    public interface IGenero : IGeneric<Genero>
+    public interface IAutor : IGeneric<Autor>
     {
     }
 }

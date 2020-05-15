@@ -1,8 +1,11 @@
 ﻿namespace Entities
 {
+    using System.Collections.Generic;
+    using System.Text.Json.Serialization;
     public class Genero : Base
     {
-        public string Descripcao { get; set; }
+        [JsonIgnore]
+        public virtual IEnumerable<Livro> Livros { get; set; }
 
     }
 }

@@ -1,7 +1,6 @@
-﻿using Entities;
-
-namespace Domain
+﻿namespace Domain
 {
+    using Entities;
     public interface IInstituicao : IGeneric<Instituicao>
     {
 
