@@ -11,18 +11,29 @@ using ApplicationApp.Interfaces;
 
 namespace LivreriaWebApplication.Controllers.API
 {
+    /// <summary>
+    /// Instituiação 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class InstituicoesController : ControllerBase
     {
         private readonly IInstituicaoApp _context;
 
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="context"></param>
         public InstituicoesController(IInstituicaoApp context)
         {
             _context = context;
         }
 
         // GET: api/Instituicoes
+        /// <summary>
+        /// Obtenção da lista de instituições.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Instituicao>>> GetInstituicoes()
         {
@@ -30,6 +41,11 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // GET: api/Instituicoes/5
+        /// <summary>
+        /// Obtenção de un cadastro de instituição, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de instituição.</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Instituicao>> GetInstituicao(int id)
         {
@@ -44,6 +60,12 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // PUT: api/Instituicoes/5
+        /// <summary>
+        /// Alteração de un cadastro de instituição, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de instituição.</param>
+        /// <param name="instituicao">Corpo de dados de instituição.</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutInstituicao(int id, Instituicao instituicao)
         {
@@ -51,8 +73,6 @@ namespace LivreriaWebApplication.Controllers.API
             {
                 return BadRequest();
             }
-
-          //  _context.Entry(instituicao).State = EntityState.Modified;
 
             try
             {
@@ -74,6 +94,11 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // POST: api/Instituicoes
+        /// <summary>
+        /// Criação de un cadastro de instituição.
+        /// </summary>
+        /// <param name="instituicao">Corpo de dados de instuitição.</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Instituicao>> PostInstituicao(Instituicao instituicao)
         {
@@ -83,6 +108,11 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // DELETE: api/Instituicoes/5
+        /// <summary>
+        /// Exclusão de un cadastro de instituição, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de instituição.</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Instituicao>> DeleteInstituicao(int id)
         {
@@ -97,6 +127,11 @@ namespace LivreriaWebApplication.Controllers.API
             return instituicao;
         }
 
+        /// <summary>
+        /// Informa se existe um castrado, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de instituição.</param>
+        /// <returns></returns>
         private async Task<bool> InstituicaoExists(int id)
         {
             var objeto = await _context.GetEntityById(id);

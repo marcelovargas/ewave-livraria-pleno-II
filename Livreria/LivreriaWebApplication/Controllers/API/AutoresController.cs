@@ -11,18 +11,29 @@
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
 
+    /// <summary>
+    /// Autores dos Livros.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AutoresController : ControllerBase
     {
         private readonly IAutorApp _context;
 
+        /// <summary>
+        /// Cosntructor
+        /// </summary>
+        /// <param name="context"></param>
         public AutoresController(IAutorApp context)
         {
             _context = context;
         }
 
         // GET: api/Autores
+        /// <summary>
+        /// Obtenção da lista de autores de livros.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Autor>>> GetAutores()
         {
@@ -30,6 +41,11 @@
         }
 
         // GET: api/Autores/5
+        /// <summary>
+        /// Obtenção de um cadastro de autor de livros, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de autor.</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Autor>> GetAutor(int id)
         {
@@ -44,6 +60,12 @@
         }
 
         // PUT: api/Autores/5
+        /// <summary>
+        /// Alteração de um cadastro de autor de livros, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de autor.</param>
+        /// <param name="autor">Corpo de dados de autor.</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAutor(int id, Autor autor)
         {
@@ -51,8 +73,6 @@
             {
                 return BadRequest();
             }
-
-           // _context.Entry(autor).State = EntityState.Modified;
 
             try
             {
@@ -74,6 +94,11 @@
         }
 
         // POST: api/Autores
+        /// <summary>
+        /// Criação de um cadastro de autor de livros.
+        /// </summary>
+        /// <param name="autor">Corpo de dados de autor.</param>
+        /// <returns></returns>
          [HttpPost]
         public async Task<ActionResult<Autor>> PostAutor(Autor autor)
         {
@@ -83,6 +108,11 @@
         }
 
         // DELETE: api/Autores/5
+        /// <summary>
+        /// Exclusão de um cadastro de autor de livros, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de autor.</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Autor>> DeleteAutor(int id)
         {
@@ -97,6 +127,11 @@
             return autor;
         }
 
+        /// <summary>
+        /// Informa se existe um castrado, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id Exclusivo de autor.</param>
+        /// <returns></returns>
         private async Task<bool> AutorExists(int id)
         {
             var objeto = await _context.GetEntityById(id);

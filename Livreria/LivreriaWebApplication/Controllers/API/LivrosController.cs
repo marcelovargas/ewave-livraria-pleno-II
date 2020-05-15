@@ -11,18 +11,29 @@ using ApplicationApp.Interfaces;
 
 namespace LivreriaWebApplication.Controllers.API
 {
+    /// <summary>
+    /// Livros a serem emprestados.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class LivrosController : ControllerBase
     {
         private readonly ILivroApp _context;
 
+        /// <summary>
+        /// Cosntructor
+        /// </summary>
+        /// <param name="context"></param>
         public LivrosController(ILivroApp context)
         {
             _context = context;
         }
 
         // GET: api/Livros
+        /// <summary>
+        /// Obtenção da lista de livros.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Livro>>> GetLivros()
         {
@@ -30,6 +41,11 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // GET: api/Livros/5
+        /// <summary>
+        /// Obtençaõ de un cadastro de um livro, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de livro.</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Livro>> GetLivro(int id)
         {
@@ -44,6 +60,12 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // PUT: api/Livros/5
+        /// <summary>
+        /// Alteração de um cadastro de livro, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de livro.</param>
+        /// <param name="livro">Corpo de dados de livro.</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLivro(int id, Livro livro)
         {
@@ -51,8 +73,6 @@ namespace LivreriaWebApplication.Controllers.API
             {
                 return BadRequest();
             }
-
-           // _context.Entry(livro).State = EntityState.Modified;
 
             try
             {
@@ -74,6 +94,11 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // POST: api/Livros
+        /// <summary>
+        /// Criação de um cadastro de livro.
+        /// </summary>
+        /// <param name="livro">Corpo de dados de livro.</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Livro>> PostLivro(Livro livro)
         {
@@ -83,6 +108,11 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // DELETE: api/Livros/5
+        /// <summary>
+        /// Excluisão de um cadastro de livro, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de livro.</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Livro>> DeleteLivro(int id)
         {
@@ -97,6 +127,11 @@ namespace LivreriaWebApplication.Controllers.API
             return livro;
         }
 
+        /// <summary>
+        /// Informa se existe um castrado., associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de livro.</param>
+        /// <returns></returns>
         private async Task<bool> LivroExists(int id)
         {
             var objeto = await _context.GetEntityById(id);

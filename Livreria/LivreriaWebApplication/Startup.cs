@@ -58,13 +58,15 @@ namespace LivreriaWebApplication
             services.AddControllersWithViews();
 
             #region Swagger
+
            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "ToDo API",
+                    Title = "Editora To do API",
                     Description = "Swagger",
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
@@ -79,6 +81,10 @@ namespace LivreriaWebApplication
                         Url = new Uri("https://example.com/license"),
                     }
                 });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
             #endregion
         }
@@ -91,7 +97,7 @@ namespace LivreriaWebApplication
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Editora To do API");
                 //c.RoutePrefix = string.Empty;
             });
 

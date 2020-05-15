@@ -12,19 +12,28 @@ namespace LivreriaWebApplication.Controllers.API
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
 
+    /// <summary>
+    /// Reserva de Livros.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ReservasController : ControllerBase
     {
         private readonly IReservaApp _context;
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context"></param>
         public ReservasController(IReservaApp context)
         {
             _context = context;
         }
 
-
+        /// <summary>
+        /// Obtenção da lista de reservas.
+        /// </summary>
+        /// <returns></returns>
         // GET: api/Reservas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reserva>>> GetReservas()
@@ -32,6 +41,11 @@ namespace LivreriaWebApplication.Controllers.API
             return await _context.List();
         }
 
+        /// <summary>
+        /// Obtenção de um cadastro de reserva de livro, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de reserva de livro.</param>
+        /// <returns></returns>
         // GET: api/Reservas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Reserva>> GetReserva(int id)
@@ -47,6 +61,12 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // PUT: api/Reservas/5
+        /// <summary>
+        /// Alteração de um cadastro de reserva de libro, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id excluivo de reserva de livro.</param>
+        /// <param name="reserva">Corpo de dados de reserva de livro.</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutReserva(int id, Reserva reserva)
         {
@@ -54,7 +74,6 @@ namespace LivreriaWebApplication.Controllers.API
             {
                 return BadRequest();
             }
-
 
 
             try
@@ -77,6 +96,11 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // POST: api/Reservas
+        /// <summary>
+        /// Criação de um cadastro de reserva de livro.
+        /// </summary>
+        /// <param name="reserva">Corpo de dados de reserva de livro.</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Reserva>> PostReserva(Reserva reserva)
         {
@@ -86,6 +110,11 @@ namespace LivreriaWebApplication.Controllers.API
         }
 
         // DELETE: api/Reservas/5
+        /// <summary>
+        /// Exclusão de um cadastro de reserva de livro, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id esclusivo de reserva de livro.</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Reserva>> DeleteReserva(int id)
         {
@@ -99,6 +128,11 @@ namespace LivreriaWebApplication.Controllers.API
             return reserva;
         }
 
+        /// <summary>
+        /// Informa se existe um castrado., associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de reserva de livro.</param>
+        /// <returns></returns>
         private async Task< bool> ReservaExists(int id)
         {
             var objeto = await _context.GetEntityById(id);

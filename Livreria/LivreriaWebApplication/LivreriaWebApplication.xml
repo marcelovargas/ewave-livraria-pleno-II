@@ -4,5 +4,323 @@
         <name>LivreriaWebApplication</name>
     </assembly>
     <members>
+        <member name="T:LivreriaWebApplication.Controllers.API.AutoresController">
+            <summary>
+            Autores dos Livros.
+            </summary>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.AutoresController.#ctor(ApplicationApp.Interfaces.IAutorApp)">
+            <summary>
+            Cosntructor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.AutoresController.GetAutores">
+            <summary>
+            Obtenção da lista de autores de livros.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.AutoresController.GetAutor(System.Int32)">
+            <summary>
+            Obtenção de um cadastro de autor de livros, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de autor.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.AutoresController.PutAutor(System.Int32,Entities.Autor)">
+            <summary>
+            Alteração de um cadastro de autor de livros, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de autor.</param>
+            <param name="autor">Corpo de dados de autor.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.AutoresController.PostAutor(Entities.Autor)">
+            <summary>
+            Criação de um cadastro de autor de livros.
+            </summary>
+            <param name="autor">Corpo de dados de autor.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.AutoresController.DeleteAutor(System.Int32)">
+            <summary>
+            Exclusão de um cadastro de autor de livros, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de autor.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.AutoresController.AutorExists(System.Int32)">
+            <summary>
+            Informa se existe um castrado, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id Exclusivo de autor.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LivreriaWebApplication.Controllers.API.EmprestimosController">
+            <summary>
+            Emprestimos de livros.
+            </summary>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.EmprestimosController.#ctor(ApplicationApp.Interfaces.IEmprestimoApp)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.EmprestimosController.GetEmprestimos">
+            <summary>
+            Obtenção de lista de emprestimos de livro.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.EmprestimosController.GetEmprestimo(System.Int32)">
+            <summary>
+             Obtenção de cadastro de emprestimo de livro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id excluivo de emprestimo de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.EmprestimosController.PutEmprestimo(System.Int32,Entities.Emprestimo)">
+            <summary>
+            Alteração de um cadastro de emprestimo de livro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id esclusivo de emprestimo de livro.</param>
+            <param name="emprestimo">Corpo de dados de emprestimo de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.EmprestimosController.PostEmprestimo(Entities.Emprestimo)">
+            <summary>
+            Criacão de cadastro de emprestimo de livro.
+            </summary>
+            <param name="emprestimo">Corpo de dados de um emprestimo de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.EmprestimosController.DeleteEmprestimo(System.Int32)">
+            <summary>
+            Exclusão de um cadastro de emprestimo de livro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de emprestimo de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.EmprestimosController.EmprestimoExists(System.Int32)">
+            <summary>
+            Informa se existe um castrado., associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de emprestimo de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LivreriaWebApplication.Controllers.API.GenerosController">
+            <summary>
+            Generos dos livros.
+            </summary>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.GenerosController.#ctor(ApplicationApp.Interfaces.IGeneroApp)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.GenerosController.GetGeneros">
+            <summary>
+            Obtenção da lista dos generos de livros.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.GenerosController.GetGenero(System.Int32)">
+            <summary>
+            Obtenção de um cadastro de genero de livros, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de genero</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.GenerosController.PutGenero(System.Int32,Entities.Genero)">
+            <summary>
+            Alteração de cadastro de genero de livros, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id eclusivo de genero.</param>
+            <param name="genero">Corpo de dados de genero.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.GenerosController.PostGenero(Entities.Genero)">
+            <summary>
+            Criação de um cadastro de um genero de livros.
+            </summary>
+            <param name="genero">Corpo de dados de genero.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.GenerosController.DeleteGenero(System.Int32)">
+            <summary>
+            Excluisão de um cadastro de um genero de livros, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de genero.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.GenerosController.GeneroExists(System.Int32)">
+            <summary>
+            Informa se existe um castrado de livros, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de genero.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LivreriaWebApplication.Controllers.API.InstituicoesController">
+            <summary>
+            Instituiação 
+            </summary>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.InstituicoesController.#ctor(ApplicationApp.Interfaces.IInstituicaoApp)">
+            <summary>
+            Constructor 
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.InstituicoesController.GetInstituicoes">
+            <summary>
+            Obtenção da lista de instituições.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.InstituicoesController.GetInstituicao(System.Int32)">
+            <summary>
+            Obtenção de un cadastro de instituição, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de instituição.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.InstituicoesController.PutInstituicao(System.Int32,Entities.Instituicao)">
+            <summary>
+            Alteração de un cadastro de instituição, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de instituição.</param>
+            <param name="instituicao">Corpo de dados de instituição.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.InstituicoesController.PostInstituicao(Entities.Instituicao)">
+            <summary>
+            Criação de un cadastro de instituição.
+            </summary>
+            <param name="instituicao">Corpo de dados de instuitição.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.InstituicoesController.DeleteInstituicao(System.Int32)">
+            <summary>
+            Exclusão de un cadastro de instituição, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de instituição.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.InstituicoesController.InstituicaoExists(System.Int32)">
+            <summary>
+            Informa se existe um castrado, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de instituição.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LivreriaWebApplication.Controllers.API.LivrosController">
+            <summary>
+            Livros a serem emprestados.
+            </summary>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.LivrosController.#ctor(ApplicationApp.Interfaces.ILivroApp)">
+            <summary>
+            Cosntructor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.LivrosController.GetLivros">
+            <summary>
+            Obtenção da lista de livros.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.LivrosController.GetLivro(System.Int32)">
+            <summary>
+            Obtençaõ de un cadastro de um livro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.LivrosController.PutLivro(System.Int32,Entities.Livro)">
+            <summary>
+            Alteração de um cadastro de livro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de livro.</param>
+            <param name="livro">Corpo de dados de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.LivrosController.PostLivro(Entities.Livro)">
+            <summary>
+            Criação de um cadastro de livro.
+            </summary>
+            <param name="livro">Corpo de dados de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.LivrosController.DeleteLivro(System.Int32)">
+            <summary>
+            Excluisão de um cadastro de livro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.LivrosController.LivroExists(System.Int32)">
+            <summary>
+            Informa se existe um castrado., associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LivreriaWebApplication.Controllers.API.ReservasController">
+            <summary>
+            Reserva de Livros.
+            </summary>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.ReservasController.#ctor(ApplicationApp.Interfaces.IReservaApp)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.ReservasController.GetReservas">
+            <summary>
+            Obtenção da lista de reservas.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.ReservasController.GetReserva(System.Int32)">
+            <summary>
+            Obtenção de um cadastro de reserva de livro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de reserva de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.ReservasController.PutReserva(System.Int32,Entities.Reserva)">
+            <summary>
+            Alteração de um cadastro de reserva de libro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id excluivo de reserva de livro.</param>
+            <param name="reserva">Corpo de dados de reserva de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.ReservasController.PostReserva(Entities.Reserva)">
+            <summary>
+            Criação de um cadastro de reserva de livro.
+            </summary>
+            <param name="reserva">Corpo de dados de reserva de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.ReservasController.DeleteReserva(System.Int32)">
+            <summary>
+            Exclusão de um cadastro de reserva de livro, associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id esclusivo de reserva de livro.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWebApplication.Controllers.API.ReservasController.ReservaExists(System.Int32)">
+            <summary>
+            Informa se existe um castrado., associado a um Id exclusivo.
+            </summary>
+            <param name="id">Id exclusivo de reserva de livro.</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
