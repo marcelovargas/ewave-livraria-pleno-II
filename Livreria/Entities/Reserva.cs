@@ -15,7 +15,7 @@
 
         [Display(Name = "Usuario")]
         [Required]
-        public int IdLusuario { get; set; }
+        public int IdUsuario { get; set; }
 
         [JsonIgnore]
         [ForeignKey("IdUsuario")]
