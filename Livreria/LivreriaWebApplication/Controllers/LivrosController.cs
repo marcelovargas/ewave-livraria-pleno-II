@@ -93,7 +93,7 @@
             var livro = new Livro();
             if (ModelState.IsValid)
             {               
-                livroViewModel.Capa = await FilesHelper.UploadPhoto(livroViewModel.ImageFile);
+                livroViewModel.Capa = await FilesHelper.UploadPhoto(livroViewModel.ImageFile,string.Empty);
 
                 livro = ToLivro(livroViewModel);
                 await _ILivroApp.Add(livro);
@@ -124,7 +124,8 @@
                 return NotFound();
             }
             ShowViewData();
-            return View(livro);
+            var view = ToView(livro);
+            return View(view);
         }
 
         // POST: Livros/Edit/5
@@ -136,9 +137,9 @@
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,IdGenero,Sipnose,Capa,IdAutor")] Livro livro)
+        public async Task<IActionResult> Edit(int id, LivroViewModel livroViewModel)
         {
-            if (id != livro.Id)
+            if (id != livroViewModel.Id)
             {
                 return NotFound();
             }
@@ -147,12 +148,14 @@
             {
                 try
                 {
+                    livroViewModel.Capa = await FilesHelper.UploadPhoto(livroViewModel.ImageFile, livroViewModel.Capa);
+                    var livro = ToLivro(livroViewModel);
                     await _ILivroApp.Update(livro);
 
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await LivroExists(livro.Id))
+                    if (!await LivroExists(livroViewModel.Id))
                     {
                         return NotFound();
                     }
@@ -165,7 +168,7 @@
             }
 
             ShowViewData();
-            return View(livro);
+            return View(livroViewModel);
         }
 
         // GET: Livros/Delete/5
@@ -227,6 +230,21 @@
         private Livro ToLivro(LivroViewModel l)
         {
             return new Livro()
+            {
+                Id = l.Id,
+                Titulo = l.Titulo,
+                Capa = l.Capa,
+                IdAutor = l.IdAutor,
+                IdGenero = l.IdGenero,
+                Sipnose = l.Sipnose,
+
+            };
+        }
+
+
+        private LivroViewModel ToView(Livro l)
+        {
+            return new LivroViewModel()
             {
                 Id = l.Id,
                 Titulo = l.Titulo,

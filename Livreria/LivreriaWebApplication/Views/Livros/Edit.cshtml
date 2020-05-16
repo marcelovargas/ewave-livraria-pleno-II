@@ -1,4 +1,4 @@
-﻿@model Entities.Livro
+﻿@model LivroViewModel
 @{
     ViewData["Title"] = "Alterar";
 }
@@ -9,9 +9,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Capa" />
             <div class="form-group">
                 <label asp-for="Titulo" class="control-label"></label>
                 <input asp-for="Titulo" class="form-control" />
@@ -28,15 +30,15 @@
                 <span asp-validation-for="Sipnose" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Capa" class="control-label"></label>
-                <input asp-for="Capa" class="form-control" />
-                <span asp-validation-for="Capa" class="text-danger"></span>
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
-                    <label asp-for="IdAutor" class="control-label"></label>
-                    <select asp-for="IdAutor" class="form-control" asp-items="ViewBag.IdAutor"></select>
-                    <span asp-validation-for="IdAutor" class="text-danger"></span>
-                </div>
+                <label asp-for="IdAutor" class="control-label"></label>
+                <select asp-for="IdAutor" class="form-control" asp-items="ViewBag.IdAutor"></select>
+                <span asp-validation-for="IdAutor" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-outline-warning"><i class="fa fa-edit"></i> Alterar</button>
                 <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>

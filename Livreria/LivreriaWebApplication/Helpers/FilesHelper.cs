@@ -16,7 +16,7 @@
        /// </summary>
        /// <param name="imageFile"></param>
        /// <returns></returns>
-        internal static async Task<string> UploadPhoto(IFormFile imageFile)
+        internal static async Task<string> UploadPhoto(IFormFile imageFile, string capa)
         {
             var path = string.Empty;
 
@@ -36,6 +36,10 @@
                 }
 
                 path = $"~/imagens/livros/{file}";
+            }
+            else
+            {
+                path = capa;
             }
 
             return path;

@@ -11,7 +11,7 @@ namespace LivreriaWebApplication.Models
     /// </summary>
     public class LivroViewModel : Livro
     {
-        [Display(Name = "Capa")]
+        [Display(Name = "Arquivo")]
         public IFormFile ImageFile { get; set; }
     }
 }

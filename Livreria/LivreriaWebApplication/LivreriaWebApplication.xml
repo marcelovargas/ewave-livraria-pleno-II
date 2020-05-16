@@ -366,7 +366,7 @@
             <param name="id">Id exclusivo de livro.</param>
             <returns></returns>
         </member>
-        <member name="M:LivreriaWebApplication.Controllers.LivrosController.Edit(System.Int32,Entities.Livro)">
+        <member name="M:LivreriaWebApplication.Controllers.LivrosController.Edit(System.Int32,LivreriaWebApplication.Models.LivroViewModel)">
             <summary>
             Executa a ação de alterar os cadastro de livro, associado a um Id exclusivo.
             </summary>
@@ -412,7 +412,7 @@
             Clase de ajuda de arquivos.
             </summary>
         </member>
-        <member name="M:LivreriaWebApplication.Helpers.FilesHelper.UploadPhoto(Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:LivreriaWebApplication.Helpers.FilesHelper.UploadPhoto(Microsoft.AspNetCore.Http.IFormFile,System.String)">
             <summary>
             Ajuda a subir uma arquivo ao servidor.
             </summary>
