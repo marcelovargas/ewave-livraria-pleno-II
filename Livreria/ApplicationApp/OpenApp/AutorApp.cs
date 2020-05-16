@@ -49,6 +49,19 @@
             }
         }
 
+        public IList<Autor> ListWithOption(string option)
+        {
+           var list = _IAutor.ListWithOption(option);
+            if (list != null)
+            {
+                return list;
+            }
+            else
+            {
+                return new List<Autor>();
+            }
+        }
+
         public async Task Update(Autor Objeto)
         {
             await _IAutor.Update(Objeto);

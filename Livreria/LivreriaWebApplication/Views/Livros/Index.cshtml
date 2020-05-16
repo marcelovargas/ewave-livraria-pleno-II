@@ -7,7 +7,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i></a>
+    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i> Novo</a>
 </p>
 <table class="table">
     <thead>
@@ -15,18 +15,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Titulo)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Genero)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Sipnose)
-            </th>
+          
+            
             <th>
                 @Html.DisplayNameFor(model => model.Capa)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Autor)
-                </th>*@
+         
             <th></th>
         </tr>
     </thead>
@@ -37,18 +31,18 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Titulo)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Genero.Id)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sipnose)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Capa)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Autor.Id)
-                    </td>*@
+             
+            <td>
+                @if (!string.IsNullOrEmpty(item.Capa))
+                {
+                    <img src="@Url.Content(item.Capa)" alt="Image" style="width:70px;height:70px;" />
+                }
+                else
+                {
+                    <img src="~/imagens/livros/no-image.jpg" alt="Image" style="width:70px;height:70px;" />
+                }
+            </td>
+             
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>

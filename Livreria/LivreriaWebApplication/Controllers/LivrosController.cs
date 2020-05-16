@@ -10,35 +10,57 @@
     using Entities;
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
+    using LivreriaWebApplication.Helpers;
+    using System.IO;
+    using LivreriaWebApplication.Models;
+    using Domain;
 
+    /// <summary>
+    /// Controller de livros.
+    /// </summary>
     public class LivrosController : Controller
     {
-        private readonly ILivroApp _context;
-        
-        public LivrosController(ILivroApp context)
+        private readonly ILivroApp _ILivroApp;
+       private readonly IAutorApp _IAutorApp;
+        private readonly IGeneroApp _IGeneroApp;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="context"></param>
+        public LivrosController(ILivroApp livro, IAutorApp autor, IGeneroApp genero)
         {
-            _context = context;
+            _ILivroApp = livro;
+            _IAutorApp = autor;
+            _IGeneroApp = genero;
         }
 
         // GET: Livros
+        /// <summary>
+        /// Retorna uma lista de livros.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            var contextBase = _context.List(); //.Include(l => l.Autor).Include(l => l.Genero);
+            var contextBase = _ILivroApp.List(); 
             return View(await contextBase);
         }
 
         // GET: Livros/Details/5
+        /// <summary>
+        /// Retorna un cadastro de um livro para ser mostrado, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de livro</param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+
+            var livro = await _ILivroApp.GetEntityById((int)id);
            
-            var livro = await _context.GetEntityById((int)id);
-            //.Include(l => l.Autor)
-            //.Include(l => l.Genero)
-            //.FirstOrDefaultAsync(m => m.Id == id);
             if (livro == null)
             {
                 return NotFound();
@@ -48,40 +70,57 @@
         }
 
         // GET: Livros/Create
+        /// <summary>
+        /// Envia o formulario base de livro.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Create()
         {
-            //ViewData["IdAutor"] = new SelectList(_context.Set<Autor>(), "Id", "Id");
-            //ViewData["IdGenero"] = new SelectList(_context.Set<Genero>(), "Id", "Id");
+            ViewData["IdAutor"] = new SelectList(_IAutorApp.ListWithOption("A"), "Id", "Nome");
+            //  ViewData["IdGenero"] = new SelectList(_context.Set<Genero>(), "Id", "Id");
             return View();
         }
 
         // POST: Livros/Create
-
+        /// <summary>
+        /// Cria um novo cadastro de livro.
+        /// </summary>
+        /// <param name="livroViewModel">Corpo de dados de livro.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,IdGenero,Sipnose,Capa,IdAutor")] Livro livro)
+        public async Task<IActionResult> Create(LivroViewModel livroViewModel)
         {
+            var livro = new Livro();
             if (ModelState.IsValid)
-            {
-                livro.IdAutor = 1;
-                livro.IdGenero = 1;
-                await _context.Add(livro);
+            {               
+                livroViewModel.Capa = await FilesHelper.UploadPhoto(livroViewModel.ImageFile);
+
+                livro = ToLivro(livroViewModel);
+                await _ILivroApp.Add(livro);
                 return RedirectToAction(nameof(Index));
             }
-            //  ViewData["IdAutor"] = new SelectList(_context.Set<Autor>(), "Id", "Id", livro.IdAutor);
-            //  ViewData["IdGenero"] = new SelectList(_context.Set<Genero>(), "Id", "Id", livro.IdGenero);
+
+            ViewData["IdAutor"] = new SelectList(_IAutorApp.ListWithOption("A"), "Id", "Nome");
+           // ViewData["IdGenero"] = new SelectList(_IGeneroApp.ListWithOption("A"), "Id", "Nome");
             return View(livro);
         }
 
+        
         // GET: Livros/Edit/5
+        /// <summary>
+        /// Retorna un cadastro de livro para alterar os dados, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de livro.</param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-           
-            var livro = await _context.GetEntityById((int)id);
+
+            var livro = await _ILivroApp.GetEntityById((int)id);
             if (livro == null)
             {
                 return NotFound();
@@ -92,6 +131,12 @@
         }
 
         // POST: Livros/Edit/5
+        /// <summary>
+        /// Executa a ação de alterar os cadastro de livro, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">Id exclusivo de livro</param>
+        /// <param name="livro">Corpo de dados de livro.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,IdGenero,Sipnose,Capa,IdAutor")] Livro livro)
@@ -105,7 +150,7 @@
             {
                 try
                 {
-                    await _context.Update(livro);
+                    await _ILivroApp.Update(livro);
 
                 }
                 catch (DbUpdateConcurrencyException)
@@ -127,14 +172,19 @@
         }
 
         // GET: Livros/Delete/5
+        /// <summary>
+        /// Retorna um cadastro de livro para ser excluido, associado a um Id exclusivo.
+        /// </summary>
+        /// <param name="id">id Exclusivo.</param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            
-            var livro = await _context.GetEntityById((int)id);
+
+            var livro = await _ILivroApp.GetEntityById((int)id);
             //.Include(l => l.Autor)
             //.Include(l => l.Genero)
             //.FirstOrDefaultAsync(m => m.Id == id);
@@ -147,21 +197,50 @@
         }
 
         // POST: Livros/Delete/5
+        /// <summary>
+        /// Executa a açaõ de exclusão do cadastro de livro.
+        /// </summary>
+        /// <param name="id">Id exclusivo de livro.</param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var livro = await _context.GetEntityById(id);
-            await _context.Delete(livro);
+            var livro = await _ILivroApp.GetEntityById(id);
+            await _ILivroApp.Delete(livro);
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Verifica a existencia de um cadastro de livro, associado a um Id exclusivo..
+        /// </summary>
+        /// <param name="id">Id Exclusivo.</param>
+        /// <returns></returns>
         private async Task<bool> LivroExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto = await _ILivroApp.GetEntityById(id);
 
             return objeto != null;
 
+        }
+
+        /// <summary>
+        /// Transforma um objeto LivroViewModel a Livro.
+        /// </summary>
+        /// <param name="l"></param>
+        /// <returns></returns>
+        private Livro ToLivro(LivroViewModel l)
+        {
+            return new Livro()
+            {
+                Id = l.Id,
+                Titulo = l.Titulo,
+                Capa = l.Capa,
+                IdAutor = l.IdAutor,
+                IdGenero = l.IdGenero,
+                Sipnose = l.Sipnose,
+
+            };
         }
     }
 }

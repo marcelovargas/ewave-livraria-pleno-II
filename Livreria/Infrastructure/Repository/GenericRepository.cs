@@ -97,6 +97,11 @@ namespace Infrastructure.Repository
 
             disposed = true;
         }
+
+        public Task<List<T>> List(string option)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
