@@ -91,16 +91,25 @@
         public async Task<IActionResult> Create(LivroViewModel livroViewModel)
         {
             var livro = new Livro();
+            
+            ShowViewData();
+
             if (ModelState.IsValid)
             {               
                 livroViewModel.Capa = await FilesHelper.UploadPhoto(livroViewModel.ImageFile,string.Empty);
-
+                
+                if (string.IsNullOrEmpty(livroViewModel.Capa))
+                {
+                    TempData["message"] = " Faltou a imagem...";
+                    return View(livroViewModel);
+                }
+              
                 livro = ToLivro(livroViewModel);
                 await _ILivroApp.Add(livro);
                 return RedirectToAction(nameof(Index));
             }
 
-            ShowViewData();           
+                      
             return View(livro);
         }
 

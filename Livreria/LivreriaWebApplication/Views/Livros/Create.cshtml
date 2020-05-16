@@ -4,6 +4,12 @@
 }
 <h4>@ViewData["Title"]</h4>
 <hr />
+<div>
+    @if (TempData["message"] != null)
+    {<p></p>
+        <p class="alert-success">@TempData["message"]</p>
+    }
+</div>
 <div class="row">
     <div class="col-md-4">
 
@@ -20,13 +26,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Sipnose" class="control-label"></label>
-                <input asp-for="Sipnose" class="form-control" />
+                <input asp-for="Sipnose"  class="form-control" />
                 <span asp-validation-for="Sipnose" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" type="file" />
+                <input asp-for="ImageFile" class="form-control" type="file" accept="image/*"/>
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
 

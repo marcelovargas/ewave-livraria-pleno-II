@@ -9,9 +9,13 @@ namespace Entities
     public class Livro
     {
         public int Id { get; set; }
+
+        [Required]
         public string Titulo { get; set; }        
 
         public string Sipnose { get; set; }
+
+        
         public string Capa { get; set; }
 
 
@@ -38,6 +42,16 @@ namespace Entities
 
         [JsonIgnore]
         public virtual IEnumerable<Reserva> Reservas { get; set; }
+
+        //
+
+        [Display(Name = "Ativo")]
+        public bool Ativo { get; set; }
+
+        public Livro()
+        {
+            Ativo = true;
+        }
 
     }
 }
