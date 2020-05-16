@@ -1,12 +1,8 @@
 ﻿@model Entities.Reserva
-
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Novo";
 }
-
-<h1>Create</h1>
-
-<h4>Reserva</h4>
+<h4>@ViewData["Title"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,23 +19,21 @@
                 </label>
             </div>
             @*<div class="form-group">
-                <label asp-for="IdLetor" class="control-label"></label>
-                <select asp-for="IdLetor" class ="form-control" asp-items="ViewBag.IdLetor"></select>
-            </div>*@
+            <label asp-for="IdLetor" class="control-label"></label>
+            <select asp-for="IdLetor" class ="form-control" asp-items="ViewBag.IdLetor"></select>
+        </div>*@
             <div class="form-group">
                 <label asp-for="IdLivro" class="control-label"></label>
-                <select asp-for="IdLivro" class ="form-control" asp-items="ViewBag.IdLivro"></select>
+                <select asp-for="IdLivro" class="form-control" asp-items="ViewBag.IdLivro"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Salvar</button>
+                <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

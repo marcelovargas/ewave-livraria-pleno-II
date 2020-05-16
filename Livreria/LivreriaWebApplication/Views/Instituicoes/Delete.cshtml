@@ -1,12 +1,11 @@
 ﻿@model Entities.Instituicao
-
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Excluir";
 }
 
-<h1>Delete</h1>
+<h4>@ViewData["Title"]</h4>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem certeza de que deseja excluir isso?</h3>
 <div>
     <h4>Instituicao</h4>
     <hr />
@@ -44,10 +43,10 @@
             @Html.DisplayFor(model => model.Ativo)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Excluir</button>
+        <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>
     </form>
 </div>

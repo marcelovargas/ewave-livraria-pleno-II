@@ -1,42 +1,42 @@
 ﻿@model Entities.Emprestimo
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Mostrar";
 }
 
-<h1>Details</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>
     <h4>Emprestimo</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DInicio)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DInicio)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DFIm)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DFIm)
         </dd>
         @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Letor)
-        </dt>*@
+                @Html.DisplayNameFor(model => model.Letor)
+            </dt>*@
         @*<dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Letor.Id)
-        </dd>*@
-        <dt class = "col-sm-2">
+                @Html.DisplayFor(model => model.Letor.Id)
+            </dd>*@
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Livro)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Livro.Id)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning"><i class="fa fa-edit"> Alterar</i></a>
+    <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>
 </div>
