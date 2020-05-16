@@ -60,13 +60,35 @@
             }
 
             var livro = await _ILivroApp.GetEntityById((int)id);
-           
+            
             if (livro == null)
             {
                 return NotFound();
             }
 
-            return View(livro);
+           var view = ToView(livro);
+            return View(view);
+        }
+
+        private LivroView ToView(Livro livro)
+        {
+            var autor = _IAutorApp.GetEntityById(livro.IdAutor);
+            var genero = _IGeneroApp.GetEntityById(livro.IdGenero);
+
+            var view = new LivroView()
+            {
+                Id = livro.Id,
+                Autor = autor.Result.Nome,
+                Genero = genero.Result.Nome,
+                Ativo = livro.Ativo,
+                Sipnose = livro.Sipnose,
+                Capa = livro.Capa,
+                Titulo =livro.Titulo,
+
+            };
+            
+
+            return view;
         }
 
         // GET: Livros/Create
@@ -133,8 +155,8 @@
                 return NotFound();
             }
             ShowViewData();
-            var view = ToView(livro);
-            return View(view);
+            var vm = ToViewModel(livro);
+            return View(vm);
         }
 
         // POST: Livros/Edit/5
@@ -251,7 +273,7 @@
         }
 
 
-        private LivroViewModel ToView(Livro l)
+        private LivroViewModel ToViewModel(Livro l)
         {
             return new LivroViewModel()
             {

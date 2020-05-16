@@ -1,27 +1,42 @@
-﻿@model Entities.Livro
+﻿@model LivroView
 
 
 @{
-    ViewData["Title"] = "Mostrar";
+    ViewData["Title"] = (Model.Titulo);
 }
 
 <h1>@ViewData["Title"]</h1>
+<hr />
 
 <div>
-    <h4>Livro</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
+    <dl>
+        <dt>
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
+        <dd>
+
+            @if (!string.IsNullOrEmpty(Model.Capa))
+            {
+                <img src="@Url.Content(Model.Capa)" alt="Image" style="width:70px;height:70px;" />
+            }
+            else
+            {
+                <img src="~/imagens/livros/no-image.jpg" alt="Image" style="width:70px;height:70px;" />
+            }
         </dd>
+    </dl>
+</div>
+
+<div>
+   
+   
+    <dl class="row">
+       
+       
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Genero)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Genero.Id)
+            @Html.DisplayFor(model => model.Genero)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Sipnose)
@@ -29,17 +44,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Sipnose)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Capa)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Capa)
-        </dd>
+        
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Autor)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Autor.Id)
+            @Html.DisplayFor(model => model.Autor)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ativo)
