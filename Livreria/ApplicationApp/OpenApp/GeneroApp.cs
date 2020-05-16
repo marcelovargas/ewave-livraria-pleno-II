@@ -49,6 +49,19 @@
             }
         }
 
+        public IList<Genero> ListWithOption(string option)
+        {
+            var list = _IGenero.ListWithOption(option);
+            if (list != null)
+            {
+                return list;
+            }
+            else
+            {
+                return new List<Genero>();
+            }
+        }
+
         public async Task Update(Genero Objeto)
         {
             await _IGenero.Update(Objeto);

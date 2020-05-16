@@ -76,8 +76,7 @@
         /// <returns></returns>
         public IActionResult Create()
         {
-            ViewData["IdAutor"] = new SelectList(_IAutorApp.ListWithOption("A"), "Id", "Nome");
-            //  ViewData["IdGenero"] = new SelectList(_context.Set<Genero>(), "Id", "Id");
+            ShowViewData();
             return View();
         }
 
@@ -101,8 +100,7 @@
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["IdAutor"] = new SelectList(_IAutorApp.ListWithOption("A"), "Id", "Nome");
-           // ViewData["IdGenero"] = new SelectList(_IGeneroApp.ListWithOption("A"), "Id", "Nome");
+            ShowViewData();           
             return View(livro);
         }
 
@@ -125,8 +123,7 @@
             {
                 return NotFound();
             }
-            // ViewData["IdAutor"] = new SelectList(_context.Set<Autor>(), "Id", "Id", livro.IdAutor);
-            // ViewData["IdGenero"] = new SelectList(_context.Set<Genero>(), "Id", "Id", livro.IdGenero);
+            ShowViewData();
             return View(livro);
         }
 
@@ -166,8 +163,8 @@
                 }
                 return RedirectToAction(nameof(Index));
             }
-            //  ViewData["IdAutor"] = new SelectList(_context.Set<Autor>(), "Id", "Id", livro.IdAutor);
-            //  ViewData["IdGenero"] = new SelectList(_context.Set<Genero>(), "Id", "Id", livro.IdGenero);
+
+            ShowViewData();
             return View(livro);
         }
 
@@ -185,9 +182,7 @@
             }
 
             var livro = await _ILivroApp.GetEntityById((int)id);
-            //.Include(l => l.Autor)
-            //.Include(l => l.Genero)
-            //.FirstOrDefaultAsync(m => m.Id == id);
+            
             if (livro == null)
             {
                 return NotFound();
@@ -241,6 +236,15 @@
                 Sipnose = l.Sipnose,
 
             };
+        }
+
+        /// <summary>
+        /// Mostrar as Viewdatas nos formularios
+        /// </summary>
+        private void ShowViewData()
+        {
+            ViewData["IdAutor"] = new SelectList(_IAutorApp.ListWithOption("A"), "Id", "Nome");
+            ViewData["IdGenero"] = new SelectList(_IGeneroApp.ListWithOption("A"), "Id", "Nome");
         }
     }
 }

@@ -402,6 +402,11 @@
             <param name="l"></param>
             <returns></returns>
         </member>
+        <member name="M:LivreriaWebApplication.Controllers.LivrosController.ShowViewData">
+            <summary>
+            Mostrar as Viewdatas nos formularios
+            </summary>
+        </member>
         <member name="T:LivreriaWebApplication.Helpers.FilesHelper">
             <summary>
             Clase de ajuda de arquivos.
