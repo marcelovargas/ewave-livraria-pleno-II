@@ -10,6 +10,9 @@
     using Entities;
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
+
+    //[Authorize]
     public class AutoresController : Controller
     {
         private readonly IAutorApp _context;

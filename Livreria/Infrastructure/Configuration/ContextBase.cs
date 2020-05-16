@@ -1,10 +1,11 @@
 ﻿namespace Infrastructure.Configuration
 {
     using Entities;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
-    public class ContextBase :  DbContext // IdentityDbContext <Usuario>
+    public class ContextBase :  IdentityDbContext<Usuario>
     {      
         public ContextBase()
         {
@@ -22,11 +23,29 @@
             base.OnConfiguring(optionsBuilder);
         }
 
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Usuario>().ToTable("Usuarios").Property(p => p.Id).HasColumnName("Id");           
+            builder.Entity<IdentityRole>().ToTable("Roles").Property(p => p.Id).HasColumnName("Id");
+
+            //builder.Entity<IdentityUserClaim<long>>().ToTable("UserClaim");
+            //builder.Entity<IdentityUserLogin<long>>().ToTable("UserLogin");
+            //builder.Entity<IdentityUserRole<long>>().ToTable("UserRole");
+            //builder.Entity<IdentityUserToken<long>>().ToTable("UserToken");
+            //builder.Entity<IdentityRoleClaim<long>>().ToTable("RoleClaim");
+
+        }
+
         private string GetStringConectionConfig()
         {
-            string con = "Server = (localdb)\\mssqllocaldb; Database = LivreriaDB; Trusted_Connection = True; MultipleActiveResultSets = true";
+            string con = "Server = (localdb)\\mssqllocaldb; Database = LivreriaDB01; Trusted_Connection = True; MultipleActiveResultSets = true";
             return con;
         }
+
+
 
         public DbSet<Autor> Autores { get; set; }
         public DbSet<Emprestimo> Emprestimos { get; set; }
@@ -34,7 +53,6 @@
         public DbSet<Instituicao> Instituicoes { get; set; }
         public DbSet<Livro> Livros { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
-
         public DbSet<Usuario> Usuarios { get; set; }
 
     }

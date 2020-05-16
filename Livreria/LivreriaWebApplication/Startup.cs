@@ -13,6 +13,11 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Reflection;
 using System.IO;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.AspNetCore.Server.IISIntegration;
 
 namespace LivreriaWebApplication
 {
@@ -42,7 +47,7 @@ namespace LivreriaWebApplication
             services.AddSingleton<IGeneroApp, GeneroApp>();
 
             services.AddSingleton<IInstituicao, InstituicaoRepository>();
-            services.AddSingleton<IInstituicaoApp, InstituicaoApp>();            
+            services.AddSingleton<IInstituicaoApp, InstituicaoApp>();
 
             services.AddSingleton<ILivro, LivroRepository>();
             services.AddSingleton<ILivroApp, LivroApp>();
@@ -59,7 +64,7 @@ namespace LivreriaWebApplication
 
             #region Swagger
 
-           
+
 
             services.AddSwaggerGen(c =>
             {
@@ -92,7 +97,7 @@ namespace LivreriaWebApplication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -114,6 +119,7 @@ namespace LivreriaWebApplication
 
             app.UseRouting();
 
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

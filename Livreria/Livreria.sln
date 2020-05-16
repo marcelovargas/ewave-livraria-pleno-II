@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationApp", "ApplicationApp\ApplicationApp.csproj", "{96A21D73-9E74-4349-8482-0CCACC81E7C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivreriaWebApplication", "LivreriaWebApplication\LivreriaWebApplication.csproj", "{43D2F152-95A2-4F71-9DB8-0585448127FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LivreriaWebApplication", "LivreriaWebApplication\LivreriaWebApplication.csproj", "{43D2F152-95A2-4F71-9DB8-0585448127FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
