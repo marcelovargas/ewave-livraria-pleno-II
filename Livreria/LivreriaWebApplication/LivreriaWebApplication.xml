@@ -322,6 +322,14 @@
             <param name="id">Id exclusivo de reserva de livro.</param>
             <returns></returns>
         </member>
+        <member name="M:LivreriaWebApplication.Controllers.GenerosController.Index(System.Int32,System.String)">
+            <summary>
+            Retorna uma lista de generos
+            </summary>
+            <param name="page"></param>
+            <param name="sortExpression"></param>
+            <returns></returns>
+        </member>
         <member name="T:LivreriaWebApplication.Controllers.LivrosController">
             <summary>
             Controller de livros.
@@ -341,7 +349,7 @@
         </member>
         <member name="M:LivreriaWebApplication.Controllers.LivrosController.Details(System.Nullable{System.Int32})">
             <summary>
-            Retorna un cadastro de um livro para ser mostrado, associado a um Id exclusivo.
+            Retorna um cadastro de um livro para ser mostrado, associado a um Id exclusivo.
             </summary>
             <param name="id">Id exclusivo de livro</param>
             <returns></returns>

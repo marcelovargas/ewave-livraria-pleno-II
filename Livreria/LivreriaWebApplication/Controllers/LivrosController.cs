@@ -48,7 +48,7 @@
 
         // GET: Livros/Details/5
         /// <summary>
-        /// Retorna un cadastro de um livro para ser mostrado, associado a um Id exclusivo.
+        /// Retorna um cadastro de um livro para ser mostrado, associado a um Id exclusivo.
         /// </summary>
         /// <param name="id">Id exclusivo de livro</param>
         /// <returns></returns>

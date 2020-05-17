@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Entities.Genero>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Entities.Genero>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+
 
 @{
     ViewData["Title"] = "Generos";
@@ -6,38 +10,46 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<p>   
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+<p>
     <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i></a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
-            
+
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                @Html.SortableHeaderFor(model => model.Nome, this.Model)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ativo)
+                @Html.SortableHeaderFor(model => model.Ativo, this.Model)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ativo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<nav aria-label="Suppliers navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>

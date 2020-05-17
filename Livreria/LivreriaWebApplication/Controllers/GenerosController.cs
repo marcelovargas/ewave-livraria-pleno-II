@@ -10,6 +10,7 @@
     using Entities;
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
+    using ReflectionIT.Mvc.Paging;
 
     public class GenerosController : Controller
     {
@@ -21,9 +22,18 @@
         }
 
         // GET: Generos
-        public async Task<IActionResult> Index()
+        /// <summary>
+        /// Retorna uma lista de generos
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="sortExpression"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Nome")
         {
-            return View(await _context.List());
+            var qry = await _context.List();
+            var model = PagingList.Create(qry, 3, page, sortExpression, "Nome");
+            return View(model);
+
         }
 
         // GET: Generos/Details/5

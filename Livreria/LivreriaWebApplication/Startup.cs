@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Server.IISIntegration;
+using ReflectionIT.Mvc.Paging;
 
 namespace LivreriaWebApplication
 {
@@ -92,6 +93,8 @@ namespace LivreriaWebApplication
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
             #endregion
+
+            services.AddPaging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
