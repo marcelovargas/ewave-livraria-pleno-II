@@ -322,7 +322,7 @@
             <param name="id">Id exclusivo de reserva de livro.</param>
             <returns></returns>
         </member>
-        <member name="M:LivreriaWebApplication.Controllers.GenerosController.Index(System.Int32,System.String)">
+        <member name="M:LivreriaWebApplication.Controllers.GenerosController.Index(System.String,System.Int32,System.String)">
             <summary>
             Retorna uma lista de generos
             </summary>
@@ -341,7 +341,7 @@
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:LivreriaWebApplication.Controllers.LivrosController.Index(System.Int32,System.String)">
+        <member name="M:LivreriaWebApplication.Controllers.LivrosController.Index(System.String,System.Int32,System.String)">
             <summary>
             Retorna uma lista de livros.
             </summary>

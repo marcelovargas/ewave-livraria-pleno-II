@@ -49,6 +49,11 @@
             }
         }
 
+        public IList<Livro> List(string filter)
+        {
+            return  _ILivro.List(filter);
+        }
+
         public async Task Update(Livro Objeto)
         {
             await _ILivro.Update(Objeto);

@@ -49,6 +49,11 @@
             }
         }
 
+        public IList<Autor> List(string filter)
+        {
+            return  _IAutor.List(filter);
+        }
+
         public IList<Autor> ListWithOption(string option)
         {
            var list = _IAutor.ListWithOption(option);

@@ -50,6 +50,11 @@
             }
         }
 
+        public IList<Instituicao> List(string filter)
+        {
+            return _IInstituicao.List(filter);
+        }
+
         public async Task Update(Instituicao Objeto)
         {
             await _IInstituicao.Update(Objeto);

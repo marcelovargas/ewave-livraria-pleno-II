@@ -13,6 +13,7 @@ namespace LivreriaWebApplication.Controllers
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
     using ReflectionIT.Mvc.Paging;
+    using Microsoft.AspNetCore.Routing;
 
     public class InstituicoesController : Controller
     {
@@ -24,10 +25,13 @@ namespace LivreriaWebApplication.Controllers
         }
 
         // GET: Instituicoes
-        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Nome")
+        public async Task<IActionResult> Index(string filter, int page = 1, string sortExpression = "Nome")
         {
-            var qry = await _context.List();
-            var model = PagingList.Create(qry, 5, page, sortExpression, "Nome");
+            var list = _context.List(filter);
+
+            var model = PagingList.Create(list, 5, page, sortExpression, "Nome");
+            model.RouteValue = new RouteValueDictionary
+            {  { "filter", filter}    };
             return View(model);
 
         }

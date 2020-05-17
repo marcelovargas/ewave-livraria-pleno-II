@@ -15,5 +15,12 @@
         /// <param name="option"></param>
         /// <returns></returns>
         IList<Genero> ListWithOption(string option);
+
+        /// <summary>
+        /// Retorna uma lista filtrada.
+        /// </summary>
+        /// <param name="filter">filtro pelo nome</param>
+        /// <returns></returns>
+        IList<Genero> List(string filter);
     }
 }

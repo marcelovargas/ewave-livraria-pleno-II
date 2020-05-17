@@ -49,6 +49,11 @@
             }
         }
 
+        public IList<Genero> List(string filter)
+        {
+            return _IGenero.List(filter);
+        }
+
         public IList<Genero> ListWithOption(string option)
         {
             var list = _IGenero.ListWithOption(option);

@@ -15,6 +15,7 @@
     using LivreriaWebApplication.Models;
     using Domain;
     using ReflectionIT.Mvc.Paging;
+    using Microsoft.AspNetCore.Routing;
 
     /// <summary>
     /// Controller de livros.
@@ -22,7 +23,7 @@
     public class LivrosController : Controller
     {
         private readonly ILivroApp _ILivroApp;
-       private readonly IAutorApp _IAutorApp;
+        private readonly IAutorApp _IAutorApp;
         private readonly IGeneroApp _IGeneroApp;
 
         /// <summary>
@@ -41,10 +42,13 @@
         /// Retorna uma lista de livros.
         /// </summary>
         /// <returns></returns>
-        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Titulo")
+        public async Task<IActionResult> Index(string filter, int page = 1, string sortExpression = "Titulo")
         {
-            var qry = await _ILivroApp.List();
-            var model = PagingList.Create(qry, 5, page, sortExpression, "Titulo");
+            var list = _ILivroApp.List(filter);
+
+            var model = PagingList.Create(list, 5, page, sortExpression, "Titulo");
+            model.RouteValue = new RouteValueDictionary
+            {  { "filter", filter}    };
             return View(model);
 
         }
@@ -63,13 +67,13 @@
             }
 
             var livro = await _ILivroApp.GetEntityById((int)id);
-            
+
             if (livro == null)
             {
                 return NotFound();
             }
 
-           var view = ToView(livro);
+            var view = ToView(livro);
             return View(view);
         }
 
@@ -86,10 +90,10 @@
                 Ativo = livro.Ativo,
                 Sipnose = livro.Sipnose,
                 Capa = livro.Capa,
-                Titulo =livro.Titulo,
+                Titulo = livro.Titulo,
 
             };
-            
+
 
             return view;
         }
@@ -116,29 +120,29 @@
         public async Task<IActionResult> Create(LivroViewModel livroViewModel)
         {
             var livro = new Livro();
-            
+
             ShowViewData();
 
             if (ModelState.IsValid)
-            {               
-                livroViewModel.Capa = await FilesHelper.UploadPhoto(livroViewModel.ImageFile,string.Empty);
-                
+            {
+                livroViewModel.Capa = await FilesHelper.UploadPhoto(livroViewModel.ImageFile, string.Empty);
+
                 if (string.IsNullOrEmpty(livroViewModel.Capa))
                 {
                     TempData["message"] = " Faltou a imagem...";
                     return View(livroViewModel);
                 }
-              
+
                 livro = ToLivro(livroViewModel);
                 await _ILivroApp.Add(livro);
                 return RedirectToAction(nameof(Index));
             }
 
-                      
+
             return View(livro);
         }
 
-        
+
         // GET: Livros/Edit/5
         /// <summary>
         /// Retorna un cadastro de livro para alterar os dados, associado a um Id exclusivo.
@@ -219,7 +223,7 @@
             }
 
             var livro = await _ILivroApp.GetEntityById((int)id);
-            
+
             if (livro == null)
             {
                 return NotFound();

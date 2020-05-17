@@ -8,6 +8,14 @@
 
 <h1>@ViewData["Title"]</h1>
 
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" placeholder=""
+           value="@Model.RouteValue["Filter"]" />
+    <button type="submit" class="btn btn-outline-info">
+        <i class="fa fa-search"></i> Buscar
+    </button>
+</form>
+
 <nav aria-label="Suppliers navigation example">
     @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
 </nav>

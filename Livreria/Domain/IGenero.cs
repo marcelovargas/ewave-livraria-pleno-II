@@ -7,5 +7,6 @@
     public interface IGenero : IGeneric<Genero>
     {
         IList<Genero> ListWithOption(string option);
+        IList<Genero> List(string filter);
     }
 }

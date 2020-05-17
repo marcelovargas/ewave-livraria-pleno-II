@@ -6,5 +6,6 @@
     public interface IAutor : IGeneric<Autor>
     {
         IList<Autor> ListWithOption(string option);
+        IList<Autor> List(string filter);
     }
 }
