@@ -31,7 +31,7 @@
         public async Task<IActionResult> Index(int page = 1, string sortExpression = "Nome")
         {
             var qry = await _context.List();
-            var model = PagingList.Create(qry, 3, page, sortExpression, "Nome");
+            var model = PagingList.Create(qry, 5, page, sortExpression, "Nome");
             return View(model);
 
         }

@@ -11,6 +11,7 @@
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
     using ApplicationApp.OpenApp;
+    using ReflectionIT.Mvc.Paging;
 
     public class ReservasController : Controller
     {
@@ -26,9 +27,12 @@
         }
 
         // GET: Reservas
-        public async Task<IActionResult> Index()
-        {           
-            return View(await _context.List());
+        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Data")
+        {
+            var qry = await _context.List();
+            var model = PagingList.Create(qry, 5, page, sortExpression, "Data");
+            return View(model);
+
         }
 
         // GET: Reservas/Details/5

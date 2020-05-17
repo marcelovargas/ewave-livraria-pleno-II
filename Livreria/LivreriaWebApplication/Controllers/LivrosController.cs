@@ -14,6 +14,7 @@
     using System.IO;
     using LivreriaWebApplication.Models;
     using Domain;
+    using ReflectionIT.Mvc.Paging;
 
     /// <summary>
     /// Controller de livros.
@@ -40,10 +41,12 @@
         /// Retorna uma lista de livros.
         /// </summary>
         /// <returns></returns>
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Titulo")
         {
-            var contextBase = _ILivroApp.List(); 
-            return View(await contextBase);
+            var qry = await _ILivroApp.List();
+            var model = PagingList.Create(qry, 5, page, sortExpression, "Titulo");
+            return View(model);
+
         }
 
         // GET: Livros/Details/5

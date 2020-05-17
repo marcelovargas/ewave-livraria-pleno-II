@@ -10,6 +10,7 @@
     using Entities;
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
+    using ReflectionIT.Mvc.Paging;
 
     public class EmprestimosController : Controller
     {
@@ -21,10 +22,13 @@
         }
 
 
-        // GET: Emprestimos
-        public async Task<IActionResult> Index()
+        // GET: Emprestimos       
+        public async Task<IActionResult> Index(int page = 1, string sortExpression = "DInicio")
         {
-            return View(await _context.List());
+            var qry = await _context.List();
+            var model = PagingList.Create(qry, 5, page, sortExpression, "DInicio");
+            return View(model);
+
         }
 
         // GET: Emprestimos/Details/5

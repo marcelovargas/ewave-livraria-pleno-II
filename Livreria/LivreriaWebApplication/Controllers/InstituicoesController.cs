@@ -12,6 +12,7 @@ namespace LivreriaWebApplication.Controllers
     using Entities;
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
+    using ReflectionIT.Mvc.Paging;
 
     public class InstituicoesController : Controller
     {
@@ -23,9 +24,12 @@ namespace LivreriaWebApplication.Controllers
         }
 
         // GET: Instituicoes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Nome")
         {
-            return View(await _context.List());
+            var qry = await _context.List();
+            var model = PagingList.Create(qry, 5, page, sortExpression, "Nome");
+            return View(model);
+
         }
 
         // GET: Instituicoes/Details/5
@@ -53,14 +57,14 @@ namespace LivreriaWebApplication.Controllers
         }
 
         // POST: Instituicoes/Create
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Endereco,CPNJ,Telefone,Id,Nome,Ativo")] Instituicao instituicao)
         {
             if (ModelState.IsValid)
             {
-               await _context.Add(instituicao);               
+                await _context.Add(instituicao);
                 return RedirectToAction(nameof(Index));
             }
             return View(instituicao);
@@ -97,7 +101,7 @@ namespace LivreriaWebApplication.Controllers
                 try
                 {
                     await _context.Update(instituicao);
-                   
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,7 +128,7 @@ namespace LivreriaWebApplication.Controllers
             }
 
             var instituicao = await _context.GetEntityById((int)id);
-               // .FirstOrDefaultAsync(m => m.Id == id);
+            // .FirstOrDefaultAsync(m => m.Id == id);
             if (instituicao == null)
             {
                 return NotFound();
@@ -139,8 +143,8 @@ namespace LivreriaWebApplication.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var instituicao = await _context.GetEntityById(id);
-           await _context.Delete(instituicao);
-           
+            await _context.Delete(instituicao);
+
             return RedirectToAction(nameof(Index));
         }
 

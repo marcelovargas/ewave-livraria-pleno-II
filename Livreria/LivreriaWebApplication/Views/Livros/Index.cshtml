@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Entities.Livro>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Entities.Livro>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
 
 @{
     ViewData["Title"] = "Livros";
@@ -6,22 +9,27 @@
 
 <h1>@ViewData["Title"]</h1>
 
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+
 <p>
     <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i> Novo</a>
 </p>
-<table class="table">
+
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Titulo)
+                
+                @Html.SortableHeaderFor(model => model.Titulo, this.Model)
             </th>
-
 
             <th>
                 @Html.DisplayNameFor(model => model.Capa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ativo)
+                @Html.SortableHeaderFor(model => model.Ativo, this.Model)
             </th>
 
             <th></th>
@@ -59,3 +67,7 @@
         }
     </tbody>
 </table>
+
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>

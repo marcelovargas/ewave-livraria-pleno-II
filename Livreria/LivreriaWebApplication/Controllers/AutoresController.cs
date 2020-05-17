@@ -11,6 +11,7 @@
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
     using Microsoft.AspNetCore.Authorization;
+    using ReflectionIT.Mvc.Paging;
 
     //[Authorize]
     public class AutoresController : Controller
@@ -24,10 +25,13 @@
         }
        
 
-        // GET: Autores
-        public async Task<IActionResult> Index()
+        // GET: Autores        
+        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Nome")
         {
-            return View(await _context.List());
+            var qry = await _context.List();
+            var model = PagingList.Create(qry, 5, page, sortExpression, "Nome");
+            return View(model);
+
         }
 
         // GET: Autores/Details/5

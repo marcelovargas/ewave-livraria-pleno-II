@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Entities.Reserva>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Entities.Reserva>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
 
 @{
     ViewData["Title"] = "Reservas";
@@ -6,23 +9,24 @@
 
 <h1>@ViewData["Title"]</h1>
 
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+
 <p>
     <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i></a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Data)
+                @Html.SortableHeaderFor(model => model.Data, this.Model)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ativo)
+                @Html.SortableHeaderFor(model => model.Livro, this.Model)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Letor)
-                </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Livro)
+                @Html.SortableHeaderFor(model => model.Ativo, this.Model)
             </th>
             <th></th>
         </tr>
@@ -31,18 +35,17 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <th>
                     @Html.DisplayFor(modelItem => item.Data)
+
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Livro.Titulo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ativo)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Letor.Id)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Livro.Id)
-                </td>
+
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>
@@ -52,3 +55,7 @@
         }
     </tbody>
 </table>
+
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>

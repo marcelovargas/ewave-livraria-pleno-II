@@ -341,7 +341,7 @@
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:LivreriaWebApplication.Controllers.LivrosController.Index">
+        <member name="M:LivreriaWebApplication.Controllers.LivrosController.Index(System.Int32,System.String)">
             <summary>
             Retorna uma lista de livros.
             </summary>

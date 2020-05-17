@@ -1,32 +1,31 @@
-﻿@model IEnumerable<Entities.Instituicao>
+﻿
+@model ReflectionIT.Mvc.Paging.PagingList<Entities.Instituicao>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
 @{
     ViewData["Title"] = "Instituições";
 }
 
 <h1>@ViewData["Title"]</h1>
 
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+
 <p>
     <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i></a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
 
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                @Html.SortableHeaderFor(model => model.Nome, this.Model)
             </th>
+           
             <th>
-                @Html.DisplayNameFor(model => model.CPNJ)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Ativo)
+                @Html.SortableHeaderFor(model => model.Ativo, this.Model)
             </th>
             <th></th>
         </tr>
@@ -38,16 +37,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CPNJ)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Endereco)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telefone)
-                </td>
-
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.Ativo)
                 </td>
@@ -60,3 +50,7 @@
         }
     </tbody>
 </table>
+
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
