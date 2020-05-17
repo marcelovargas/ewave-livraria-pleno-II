@@ -14,18 +14,18 @@
 </nav>
 
 <p>
-    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i></a>
+    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i> Novo</a>
 </p>
 <table class="table table-striped">
     <thead>
-        <tr>
-            <th>
+        <tr class="table-primary">
+            <th class="text-lg-center">
                 @Html.SortableHeaderFor(model => model.Data, this.Model)
             </th>
-            <th>
+            <th class="text-lg-center">
                 @Html.SortableHeaderFor(model => model.Livro, this.Model)
             </th>
-            <th>
+            <th class="text-lg-center">
                 @Html.SortableHeaderFor(model => model.Ativo, this.Model)
             </th>
             <th></th>

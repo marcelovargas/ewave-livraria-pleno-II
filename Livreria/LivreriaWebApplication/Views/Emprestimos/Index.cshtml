@@ -13,11 +13,11 @@
 </nav>
 
 <p>
-    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i></a>
+    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i> Novo</a>
 </p>
 <table class="table table-striped">
     <thead>
-        <tr>
+        <tr class="table-primary">
             <th>
                 @Html.SortableHeaderFor(model => model.DInicio, this.Model)
             </th>

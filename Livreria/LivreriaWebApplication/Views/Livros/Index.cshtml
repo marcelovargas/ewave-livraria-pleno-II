@@ -28,16 +28,16 @@
 
 <table class="table table-striped">
     <thead>
-        <tr>
-            <th>
+        <tr class="table-primary">
+            <th class="text-lg-center">
                 
                 @Html.SortableHeaderFor(model => model.Titulo, this.Model)
             </th>
 
-            <th>
+            <th class="text-lg-center">
                 @Html.DisplayNameFor(model => model.Capa)
             </th>
-            <th>
+            <th class="text-lg-center">
                 @Html.SortableHeaderFor(model => model.Ativo, this.Model)
             </th>
 

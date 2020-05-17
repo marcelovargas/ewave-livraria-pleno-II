@@ -3,10 +3,11 @@
 @addTagHelper *, ReflectionIT.Mvc.Paging
 
 
-
 @{
     ViewData["Title"] = "Generos";
 }
+<h1>@ViewData["Title"]</h1>
+
 <form method="get" class="form-inline">
     <input name="filter" class="form-control" placeholder=""
            value="@Model.RouteValue["Filter"]" />
@@ -15,23 +16,21 @@
     </button>
 </form>
 
-<h1>@ViewData["Title"]</h1>
 
 <nav aria-label="Suppliers navigation example">
     @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
 </nav>
 
 <p>
-    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i></a>
+    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-file"></i> Novo</a>
 </p>
 <table class="table table-striped">
     <thead>
-        <tr>
-
-            <th>
+        <tr class="table-primary">
+            <th class="text-lg-center">
                 @Html.SortableHeaderFor(model => model.Nome, this.Model)
             </th>
-            <th>
+            <th class="text-lg-center">
                 @Html.SortableHeaderFor(model => model.Ativo, this.Model)
             </th>
             <th></th>
