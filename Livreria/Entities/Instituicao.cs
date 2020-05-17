@@ -10,6 +10,6 @@ namespace Entities
         public string Telefone { get; set; }
 
         [JsonIgnore]
-        public virtual IEnumerable<Usuario> Usuarios { get; set; }
+        public virtual IEnumerable<Leitor> Leitores { get; set; }
     }
 }

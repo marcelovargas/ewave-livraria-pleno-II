@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
-    public class ContextBase :  IdentityDbContext<Usuario>
+    public class ContextBase :  DbContext
     {      
         public ContextBase()
         {
@@ -28,8 +28,8 @@
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Usuario>().ToTable("Usuarios").Property(p => p.Id).HasColumnName("Id");           
-            builder.Entity<IdentityRole>().ToTable("Roles").Property(p => p.Id).HasColumnName("Id");
+            //builder.Entity<Usuario>().ToTable("Usuarios").Property(p => p.Id).HasColumnName("Id");           
+            //builder.Entity<IdentityRole>().ToTable("Roles").Property(p => p.Id).HasColumnName("Id");
 
             //builder.Entity<IdentityUserClaim<long>>().ToTable("UserClaim");
             //builder.Entity<IdentityUserLogin<long>>().ToTable("UserLogin");
@@ -41,7 +41,7 @@
 
         private string GetStringConectionConfig()
         {
-            string con = "Server = (localdb)\\mssqllocaldb; Database = LivreriaDB01; Trusted_Connection = True; MultipleActiveResultSets = true";
+            string con = "Server = (localdb)\\mssqllocaldb; Database =LivreriaDB01; Trusted_Connection = True; MultipleActiveResultSets = true";
             return con;
         }
 
@@ -53,7 +53,7 @@
         public DbSet<Instituicao> Instituicoes { get; set; }
         public DbSet<Livro> Livros { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Leitor> Leitores { get; set; }
 
     }
 

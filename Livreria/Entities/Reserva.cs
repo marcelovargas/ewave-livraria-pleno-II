@@ -13,13 +13,13 @@
         public DateTime Data { get; set; }
         public bool Ativo { get; set; }
 
-        [Display(Name = "Usuario")]
+        [Display(Name = "Leitor")]
         [Required]
-        public string IdUsuario { get; set; }
+        public int IdLeitor { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("IdUsuario")]
-        public virtual Usuario   Usuario { get; set; }
+        [ForeignKey("IdLeitor")]
+        public virtual Leitor   Leitor { get; set; }
 
 
         [Display(Name = "Livro")]
