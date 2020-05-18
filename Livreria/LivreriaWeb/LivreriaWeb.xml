@@ -415,6 +415,13 @@
             Mostrar as Viewdatas nos formularios
             </summary>
         </member>
+        <member name="M:LivreriaWeb.Controllers.ReservasController.Create(System.Nullable{System.Int32})">
+            <summary>
+            lksdfj
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:LivreriaWeb.Helpers.FilesHelper">
             <summary>
             Clase de ajuda de arquivos.

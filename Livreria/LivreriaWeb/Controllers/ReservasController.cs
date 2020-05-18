@@ -27,11 +27,14 @@
             _context = context;
         }
 
-        // GET: Reservas
-        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Data")
+        //GET: Reservas
+        public IActionResult Index(int page = 1, string sortExpression = "Titulo")
         {
-            var qry = await _context.List();
-            var model = PagingList.Create(qry, 5, page, sortExpression, "Data");
+            var qry = _context.ListOfDetails();
+            var model = PagingList.Create(qry, 5, page, sortExpression, "Titulo");
+            var leitor = "2";
+            ViewBag.Carinho = _context.List(leitor);
+
             return View(model);
 
         }
@@ -56,31 +59,28 @@
             return View(reserva);
         }
 
-        // GET: Reservas/Create
-        public IActionResult Create()
+        // GET: Reservas/Create      
+        /// <summary>
+        /// lksdfj
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Create(int? id)
         {
-
-            //ViewData["IdUsuario"] = new SelectList(_contextUsuarios.List(), "Id", "Id");
-            //ViewData["IdLivro"] = new SelectList(_context.Livros, "Id", "Id");
-            return View();
-        }
-
-        // POST: Reservas/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Data,Ativo,IdUsuario,IdLivro")] Reserva reserva)
-        {
-            if (ModelState.IsValid)
+            var objeto = new Reserva()
             {
-                await _context.Add(reserva);
+                IdLivro = 1,
+                Ativo = true,
+                Data = DateTime.Now,
+                IdLeitor = "2",
 
-                return RedirectToAction(nameof(Index));
-            }
-            // ViewData["IdLetor"] = new SelectList(_context.Leitores, "Id", "Id", reserva.IdLetor);
-            // ViewData["IdLivro"] = new SelectList(_context.Livros, "Id", "Id", reserva.IdLivro);
-            return View(reserva);
+            };
+            await _context.Add(objeto);
+            return this.RedirectToAction("Index");
         }
+
+
+
 
         // GET: Reservas/Edit/5
         public async Task<IActionResult> Edit(int? id)

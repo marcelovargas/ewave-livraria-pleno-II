@@ -50,9 +50,21 @@
             }
         }
 
+        public IList<ReservaView> List(string leitor)
+        {
+           return _IReserva.List(leitor);
+        }
+
+        
+
         public async Task Update(Reserva Objeto)
         {
             await _IReserva.Update(Objeto);
+        }
+
+        IList<LivroView> IReservaApp.ListOfDetails()
+        {
+            return _IReserva.ListOfDetails();
         }
     }
 }

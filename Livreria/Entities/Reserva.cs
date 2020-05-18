@@ -15,7 +15,7 @@
 
         [Display(Name = "Leitor")]
         [Required]
-        public int IdLeitor { get; set; }
+        public string IdLeitor { get; set; }
 
         [JsonIgnore]
         [ForeignKey("IdLeitor")]

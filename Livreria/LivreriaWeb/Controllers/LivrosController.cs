@@ -17,6 +17,7 @@
     using Domain;
     using ReflectionIT.Mvc.Paging;
     using Microsoft.AspNetCore.Routing;
+    using LivroView = Models.LivroView;
 
     /// <summary>
     /// Controller de livros.
