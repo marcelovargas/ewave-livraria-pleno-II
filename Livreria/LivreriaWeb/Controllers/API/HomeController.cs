@@ -10,10 +10,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LivreriaWeb.Controllers.API
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class HomeController : ControllerBase
     {
+        /// <summary>
+        /// Retorna o token
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("V1/Account")]
         [AllowAnonymous]
