@@ -6,6 +6,7 @@ using LivreriaWeb.Models;
 using LivreriaWeb.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivreriaWeb.Controllers.API
@@ -14,6 +15,13 @@ namespace LivreriaWeb.Controllers.API
     [ApiController]
     public class HomeController : ControllerBase
     {
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public HomeController(UserManager<IdentityUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         /// <summary>
         /// Retorna o token
         /// </summary>
@@ -24,20 +32,24 @@ namespace LivreriaWeb.Controllers.API
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> Authenticate([FromBody] User model)
         {
-            var user = new User()
-            {
-                UserName = model.UserName,
-                Password = model.Password,
-            };
+            var response = _userManager.FindByEmailAsync(model.UserName);
 
-            var token = TokenServices.GenerarateToken(model);
-            user.Password = string.Empty;
-            return new
+            if (response != null)
             {
-                user = user,
-                token = token,
+                var usuario = (IdentityUser)response.Result;
 
-            };
+                var token = TokenServices.GenerarateToken(usuario);
+
+                return new
+                {
+                    user = usuario,
+                    token = token,
+
+                };
+            }
+
+            return null;
+            
         }
     }
 }

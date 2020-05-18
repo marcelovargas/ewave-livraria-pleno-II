@@ -1,4 +1,5 @@
 ﻿using LivreriaWeb.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace LivreriaWeb.Services
 {
     public static class TokenServices
     {
-        public static string GenerarateToken (User user)
+        public static string GenerarateToken (IdentityUser user)
         {
             var tokenhandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
@@ -22,7 +23,7 @@ namespace LivreriaWeb.Services
                 Subject = new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.Name, user.UserName.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
+                
                 }),
 
                 Expires = DateTime.UtcNow.AddHours(2),
