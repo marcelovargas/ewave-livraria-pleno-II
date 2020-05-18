@@ -74,7 +74,7 @@
         {
             var objeto = new Reserva()
             {
-                IdLivro = 1,
+                IdLivro = (int)id,
                 Ativo = true,
                 Data = DateTime.Now,
                 IdLeitor = CurrentUser(),

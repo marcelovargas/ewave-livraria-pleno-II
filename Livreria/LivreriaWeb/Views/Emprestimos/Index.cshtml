@@ -1,4 +1,4 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<Entities.Emprestimo>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Entities.Reserva>
 @using ReflectionIT.Mvc.Paging
 @addTagHelper *, ReflectionIT.Mvc.Paging
 
@@ -19,13 +19,11 @@
     <thead>
         <tr class="table-primary">
             <th>
-                @Html.SortableHeaderFor(model => model.DInicio, this.Model)
+                @Html.SortableHeaderFor(model => model.Data, this.Model)
             </th>
+
             <th>
-                @Html.SortableHeaderFor(model => model.DFIm, this.Model)
-            </th>
-            <th>
-                @Html.SortableHeaderFor(model => model.Livro.Titulo, this.Model)
+                @Html.SortableHeaderFor(model => model.Livro.Id, this.Model)
             </th>
             <th></th>
         </tr>
@@ -35,19 +33,18 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DInicio)
+                    @Html.DisplayFor(modelItem => item.Data)
                 </td>
+
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.DFIm)
+                    @Html.DisplayFor(modelItem => item.Livro.Id)
                 </td>
-              
-                <td>
-                    @Html.DisplayFor(modelItem => item.Livro.Titulo)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
+                <td id="@item.Id">
+                    <a asp-action="Send" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-paper-plane"></i></a>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+                    <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-outline-danger" id="btnCancel"><i class="fa fa-trash"></i></a>
+
                 </td>
             </tr>
         }
@@ -57,3 +54,57 @@
 <nav aria-label="Suppliers navigation example">
     @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
 </nav>
+
+<!-- Cancelar reserva-->
+<div class="modal fade" id="cancelDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cancelar reserva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-outline-danger" id="btnYes">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var id = 0;
+
+            $("#btnCancel").click(function () {
+                $("#cancelDialog").modal('show');
+                return false;
+            });
+
+            $("#btnNo").click(function () {
+                $("#cancelDialog").modal('hide');
+                return false;
+            });
+
+
+            $('a[id*=btnCancel]').click(function () {
+                debugger;
+                id = $(this).parent()[0].id;
+
+                return false;
+            });
+
+
+            $("#btnYes").click(function () {
+                window.location.href = '/Emprestimos/CancelConfirmed/' + id;
+            });
+        });
+    </script>
+}

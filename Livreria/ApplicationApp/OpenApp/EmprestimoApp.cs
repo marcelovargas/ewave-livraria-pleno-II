@@ -50,6 +50,11 @@
             }
         }
 
+        public IList<Reserva> ListofReserved()
+        {
+           return _IEmprestimo.ListofReserved();
+        }
+
         public async Task Update(Emprestimo Objeto)
         {
             await _IEmprestimo.Update(Objeto);
