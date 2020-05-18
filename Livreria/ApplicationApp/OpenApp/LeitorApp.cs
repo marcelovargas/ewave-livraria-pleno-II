@@ -8,35 +8,51 @@ namespace ApplicationApp.OpenApp
     using System.Threading.Tasks;
     public class LeitorApp : ILeitorApp
     {
-        ILeitor _IUsuario;
+        ILeitor _ILeitor;
         public LeitorApp(ILeitor IUsuario)
         {
-            _IUsuario = IUsuario;
+            _ILeitor = IUsuario;
         }
 
-        public Task Add(Leitor Objeto)
+        public async Task Add(Leitor Objeto)
         {
-            throw new System.NotImplementedException();
+            await _ILeitor.Add(Objeto);
         }
 
-        public Task Delete(Leitor Objeto)
+        public async Task Delete(Leitor Objeto)
         {
-            throw new System.NotImplementedException();
+            await _ILeitor.Delete(Objeto);
         }
 
-        public Task<Leitor> GetEntityById(int Id)
+        public async Task<Leitor> GetEntityById(int Id)
         {
-            throw new System.NotImplementedException();
+            var record = await _ILeitor.GetEntityById(Id);
+            if (record != null)
+            {
+                return record;
+            }
+            else
+            {
+                return new Leitor();
+            }
         }
 
-        public Task<List<Leitor>> List()
+        public async Task<List<Leitor>> List()
         {
-            throw new System.NotImplementedException();
+            var list = await _ILeitor.List();
+            if (list != null)
+            {
+                return list;
+            }
+            else
+            {
+                return new List<Leitor>();
+            }
         }
 
-        public Task Update(Leitor Objeto)
+        public async Task Update(Leitor Objeto)
         {
-            throw new System.NotImplementedException();
+            await _ILeitor.Update(Objeto);
         }
     }
 }

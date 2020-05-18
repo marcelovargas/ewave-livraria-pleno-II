@@ -14,6 +14,7 @@
     using ApplicationApp.OpenApp;
     using ReflectionIT.Mvc.Paging;
     using Microsoft.AspNetCore.Authorization;
+    using System.Security.Claims;
 
     [Authorize]
     public class ReservasController : Controller
@@ -34,7 +35,9 @@
         {
             var qry = _context.ListOfDetails();
             var model = PagingList.Create(qry, 5, page, sortExpression, "Titulo");
-            var leitor = "2";
+
+            var leitor = CurrentUser();
+            
             ViewBag.Carinho = _context.List(leitor);
 
             return View(model);
@@ -74,9 +77,9 @@
                 IdLivro = 1,
                 Ativo = true,
                 Data = DateTime.Now,
-                IdLeitor = "2",
+                IdLeitor = CurrentUser(),
 
-            };
+        };
             await _context.Add(objeto);
             return this.RedirectToAction("Index");
         }
@@ -174,6 +177,12 @@
             var objeto = await _context.GetEntityById(id);
 
             return objeto != null;
+        }
+
+        public string CurrentUser()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            return currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
     }
 }
