@@ -29,7 +29,8 @@
         // GET: Emprestimos       
         public async Task<IActionResult> Index(int page = 1, string sortExpression = "Data")
         {
-            var qry = _IEmprestimoApp.ListofReserved();
+            var option = "A";
+            var qry = _IEmprestimoApp.ListofReserved(option);
             var model = PagingList.Create(qry, 5, page, sortExpression, "Data");
             return View(model);
 

@@ -50,9 +50,9 @@
             }
         }
 
-        public IList<Reserva> ListofReserved()
+        public IList<Reserva> ListofReserved(string option)
         {
-           return _IEmprestimo.ListofReserved();
+           return _IEmprestimo.ListofReserved(option);
         }
 
         public async Task Update(Emprestimo Objeto)

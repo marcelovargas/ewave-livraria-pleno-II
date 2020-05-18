@@ -16,11 +16,21 @@
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public IList<Reserva> ListofReserved()
+        public IList<Reserva> ListofReserved(string option)
         {
             using (var db = new ContextBase(_OptionsBuilder))
             {
-                return db.Reservas.Where(x => x.Ativo == true).ToList();
+                switch (option)
+                {
+                    case "A":
+                        return db.Reservas.Where(x => x.Ativo == true).ToList();
+                    case "D":
+                        return db.Reservas.Where(x => x.Ativo == false).ToList();
+                    default:
+                        return db.Reservas.ToList();
+                        break;
+                }
+                
             }
         }
     }

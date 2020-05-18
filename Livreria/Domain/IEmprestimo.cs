@@ -6,6 +6,6 @@
 
     public interface IEmprestimo : IGeneric<Emprestimo>
     {
-        IList<Reserva> ListofReserved();
+        IList<Reserva> ListofReserved(string option);
     }
 }

@@ -57,7 +57,7 @@
         {
             using (var db = new ContextBase(_OptionsBuilder))
             {
-                var lista = from r in db.Reservas
+                var lista = from r in db.Reservas.Where(x => x.Ativo == true)
                        join l in db.Livros on r.IdLivro equals l.Id
                        where r.IdLeitor.Equals(leitor)
                        select new ReservaView
