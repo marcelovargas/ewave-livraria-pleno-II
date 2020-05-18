@@ -6,6 +6,7 @@
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class ReservaRepository : GenericRepository<Reserva>, IReserva
     {
@@ -14,6 +15,21 @@
         public ReservaRepository()
         {
             _OptionsBuilder = new DbContextOptions<ContextBase>();
+        }
+
+        public async Task AddUnique(Reserva objeto)
+        {
+            using (var data = new ContextBase(_OptionsBuilder))
+            {
+                var reservas = data.Reservas.Where(x => x.Ativo == true && x.IdLivro == objeto.IdLivro).Count();
+                var emprestimos = data.Emprestimos.Where(x=> x.IdLivro == objeto.IdLivro && x.DFIm == null).Count();
+
+                if (reservas == 0 && emprestimos == 0)
+                {
+                    await data.AddAsync(objeto);
+                    await data.SaveChangesAsync();
+                }
+            }
         }
 
         public IList<LivroView> ListOfDetails()

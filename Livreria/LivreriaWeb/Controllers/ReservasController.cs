@@ -80,7 +80,7 @@
                 IdLeitor = CurrentUser(),
 
         };
-            await _context.Add(objeto);
+            await _context.AddUnique(objeto);
             return this.RedirectToAction("Index");
         }
 

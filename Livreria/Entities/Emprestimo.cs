@@ -11,7 +11,7 @@
     {
         public int Id { get; set; }
         public DateTime DInicio { get; set; }
-        public DateTime DFIm { get; set; }
+        public DateTime? DFIm { get; set; }
 
         [Display(Name = "Leitor")]
         [Required]

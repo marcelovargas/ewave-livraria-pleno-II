@@ -18,6 +18,11 @@
             await _IReserva.Add(Objeto);
         }
 
+        public async Task AddUnique(Reserva objeto)
+        {
+            await _IReserva.AddUnique(objeto);
+        }
+
         public async Task Delete(Reserva Objeto)
         {
             await _IReserva.Delete(Objeto);
