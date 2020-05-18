@@ -16,22 +16,68 @@
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public IList<Reserva> ListofReserved(string option)
+        public IList<ReservaView> ListofReserved(string option)
         {
             using (var db = new ContextBase(_OptionsBuilder))
             {
                 switch (option)
                 {
+
                     case "A":
-                        return db.Reservas.Where(x => x.Ativo == true).ToList();
+                     return (from re in db.Reservas.Where(x => x.Ativo == true)
+                             join li in db.Livros on re.IdLivro equals li.Id
+                             join le in db.Leitores on re.IdLeitor equals le.Id
+                             select new ReservaView
+                             {
+                                 Id = re.Id,
+                                 Ativo = re.Ativo,
+                                 Data = re.Data,
+                                 IdLivro = re.IdLivro,
+                                 IdLeitor = re.IdLeitor,
+                                 Capa = li.Capa,
+                                 LeitorNome = le.Nome,
+                                 Titulo = li.Titulo,
+
+                             }).AsNoTracking().ToList();
                     case "D":
-                        return db.Reservas.Where(x => x.Ativo == false).ToList();
+                        return (from re in db.Reservas.Where(x=> x.Ativo == false)
+                                join li in db.Livros on re.IdLivro equals li.Id
+                                join le in db.Leitores on re.IdLeitor equals le.Id
+                                select new ReservaView
+                                {
+                                    Id = re.Id,
+                                    Ativo = re.Ativo,
+                                    Data = re.Data,
+                                    IdLivro = re.IdLivro,
+                                    IdLeitor = re.IdLeitor,
+                                    Capa = li.Capa,
+                                    LeitorNome = le.Nome,
+                                    Titulo = li.Titulo,
+
+                                }).AsNoTracking().ToList();
                     default:
-                        return db.Reservas.ToList();
-                        break;
+                        return (from re in db.Reservas
+                                join li in db.Livros on re.IdLivro equals li.Id
+                                join le in db.Leitores on re.IdLeitor equals le.Id
+                                select new ReservaView
+                                {
+                                    Id = re.Id,
+                                    Ativo = re.Ativo,
+                                    Data = re.Data,
+                                    IdLivro = re.IdLivro,
+                                    IdLeitor = re.IdLeitor,
+                                    Capa = li.Capa,
+                                    LeitorNome = le.Nome,
+                                    Titulo = li.Titulo,
+
+                                }).AsNoTracking().ToList();
+                       
                 }
-                
+               
+
             }
+
         }
     }
 }
+

@@ -1,4 +1,4 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<Entities.Reserva>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Entities.ReservaView>
 @using ReflectionIT.Mvc.Paging
 @addTagHelper *, ReflectionIT.Mvc.Paging
 
@@ -21,30 +21,52 @@
             </th>
 
             <th>
-                @Html.SortableHeaderFor(model => model.Livro.Id, this.Model)
+                @Html.SortableHeaderFor(model => model.Capa, this.Model)
             </th>
+
+            <th>
+                @Html.SortableHeaderFor(model => model.Titulo, this.Model)
+            </th>
+
+            <th>
+                @Html.SortableHeaderFor(model => model.LeitorNome, this.Model)
+            </th>
+
+
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Data)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.Capa))
+                {
+                    <img src="@Url.Content(item.Capa)" alt="Image" style="width:70px;height:70px;" />
+                }
+                else
+                {
+                    <img src="~/imagens/livros/no-image.jpg" alt="Image" style="width:70px;height:70px;" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeitorNome)
+            </td>
 
+            <td id="@item.Id">
+                <a asp-action="Send" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-paper-plane"></i></a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>
+                <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-outline-danger" id="btnCancel"><i class="fa fa-trash"></i></a>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Livro.Id)
-                </td>
-                <td id="@item.Id">
-                    <a asp-action="Send" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-paper-plane"></i></a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>
-                    <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-outline-danger" id="btnCancel"><i class="fa fa-trash"></i></a>
-
-                </td>
-            </tr>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

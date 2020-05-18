@@ -50,7 +50,7 @@
             }
         }
 
-        public IList<Reserva> ListofReserved(string option)
+        public IList<ReservaView> ListofReserved(string option)
         {
            return _IEmprestimo.ListofReserved(option);
         }

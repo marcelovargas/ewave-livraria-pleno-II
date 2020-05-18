@@ -5,7 +5,7 @@
 
     public interface IEmprestimoApp : IGenericApp<Emprestimo>
     {
-        IList<Reserva> ListofReserved(string op);
+        IList<ReservaView> ListofReserved(string option);
 
     }
 }
