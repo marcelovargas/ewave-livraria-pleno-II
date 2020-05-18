@@ -163,6 +163,13 @@
             <param name="id">Id exclusivo de genero.</param>
             <returns></returns>
         </member>
+        <member name="M:LivreriaWeb.Controllers.API.HomeController.Authenticate(LivreriaWeb.Models.User)">
+            <summary>
+            Retorna o token
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="T:LivreriaWeb.Controllers.API.InstituicoesController">
             <summary>
             Instituiação 
