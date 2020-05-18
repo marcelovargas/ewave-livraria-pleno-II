@@ -12,7 +12,9 @@
     using ApplicationApp.Interfaces;
     using ReflectionIT.Mvc.Paging;
     using Microsoft.AspNetCore.Routing;
+    using Microsoft.AspNetCore.Authorization;
 
+    [Authorize]
     public class InstituicoesController : Controller
     {
         private readonly IInstituicaoApp _context;

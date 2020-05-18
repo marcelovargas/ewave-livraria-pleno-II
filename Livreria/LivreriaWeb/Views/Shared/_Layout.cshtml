@@ -30,7 +30,8 @@
 
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-
+                        
+                       
 
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Autores" asp-action="Index"><i class="fa fa-book-reader"></i> Autores</a>
@@ -54,6 +55,9 @@
 
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Reservas" asp-action="Index"><i class="fa fa-book-open"></i> Reservas</a>
+                        </li>
+                        <li class="nav-item" >
+                            <partial name="_LoginPartial" />
                         </li>
 
                     </ul>

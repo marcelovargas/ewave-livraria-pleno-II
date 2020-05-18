@@ -18,10 +18,13 @@
     using ReflectionIT.Mvc.Paging;
     using Microsoft.AspNetCore.Routing;
     using LivroView = Models.LivroView;
+    using Microsoft.AspNetCore.Authorization;
 
     /// <summary>
     /// Controller de livros.
     /// </summary>
+
+    [Authorize]
     public class LivrosController : Controller
     {
         private readonly ILivroApp _ILivroApp;

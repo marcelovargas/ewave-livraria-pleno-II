@@ -13,7 +13,9 @@
     using ApplicationApp.Interfaces;
     using ApplicationApp.OpenApp;
     using ReflectionIT.Mvc.Paging;
+    using Microsoft.AspNetCore.Authorization;
 
+    [Authorize]
     public class ReservasController : Controller
     {
         private readonly IReservaApp _context;

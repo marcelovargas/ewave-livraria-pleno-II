@@ -11,7 +11,9 @@
     using Infrastructure.Configuration;
     using ApplicationApp.Interfaces;
     using ReflectionIT.Mvc.Paging;
+    using Microsoft.AspNetCore.Authorization;
 
+    [Authorize]
     public class EmprestimosController : Controller
     {
         private readonly IEmprestimoApp _context;
