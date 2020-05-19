@@ -18,6 +18,11 @@
             await _IEmprestimo.Add(Objeto);
         }
 
+        public async Task AddWithControl(Emprestimo emprestimo)
+        {
+            await _IEmprestimo.AddWithControl(emprestimo);
+        }
+
         public async Task Delete(Emprestimo Objeto)
         {
             await _IEmprestimo.Delete(Objeto);

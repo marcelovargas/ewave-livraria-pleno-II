@@ -87,7 +87,7 @@
             };
             try
             {
-                await _IEmprestimoApp.Add(emprestimo);
+                await _IEmprestimoApp.AddWithControl(emprestimo);
             }
             catch (Exception)
             {

@@ -7,5 +7,6 @@
     public interface IEmprestimo : IGeneric<Emprestimo>
     {
         IList<ReservaView> ListofReserved(string option);
+        Task AddWithControl(Emprestimo objeto);
     }
 }

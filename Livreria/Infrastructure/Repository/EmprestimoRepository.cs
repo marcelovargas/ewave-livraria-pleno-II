@@ -4,8 +4,10 @@
     using Entities;
     using Infrastructure.Configuration;
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class EmprestimoRepository : GenericRepository<Emprestimo>, IEmprestimo
     {
@@ -14,6 +16,29 @@
         public EmprestimoRepository()
         {
             _OptionsBuilder = new DbContextOptions<ContextBase>();
+        }
+
+        public async Task AddWithControl(Emprestimo objeto)
+        {
+            using (var db = new ContextBase(_OptionsBuilder))
+            {
+                int cant = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor).Count();
+
+                //var atra = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor)
+
+                //             .OrderByDescending(x => x.Id)
+                //             .Take(1);
+
+                
+
+                if (cant < 2 )
+                {
+                    await db.Emprestimos.AddAsync(objeto);
+                    await db.SaveChangesAsync();
+                }
+
+               
+            }
         }
 
         public IList<ReservaView> ListofReserved(string option)
