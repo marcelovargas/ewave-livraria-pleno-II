@@ -1,41 +1,64 @@
-﻿@model Entities.Emprestimo
+﻿@model Entities.ReservaView
+
 @{
-    ViewData["Title"] = "Novo";
+    ViewData["Title"] = (Model.Titulo);
 }
-<h4>@ViewData["Title"]</h4>
+
+<h1>@ViewData["Title"]</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DInicio" class="control-label"></label>
-                <input asp-for="DInicio" class="form-control" />
-                <span asp-validation-for="DInicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DFIm" class="control-label"></label>
-                <input asp-for="DFIm" class="form-control" />
-                <span asp-validation-for="DFIm" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="IdLetor" class="control-label"></label>
-            <select asp-for="IdLetor" class ="form-control" asp-items="ViewBag.IdLetor"></select>
-        </div>*@
-            <div class="form-group">
-                <label asp-for="IdLivro" class="control-label"></label>
-                <select asp-for="IdLivro" class="form-control" asp-items="ViewBag.IdLivro"></select>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Salvar</button>
-                <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>
-            </div>
-        </form>
-    </div>
+
+<div>
+    <dl>
+        <dt>
+        </dt>
+        <dd>
+
+            @if (!string.IsNullOrEmpty(Model.Capa))
+            {
+                <img src="@Url.Content(Model.Capa)" alt="Image" style="width:70px;height:70px;" />
+            }
+            else
+            {
+                <img src="~/imagens/livros/no-image.jpg" alt="Image" style="width:70px;height:70px;" />
+            }
+        </dd>
+    </dl>
 </div>
 
+<div>
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <dl class="row">
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sipnose)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sipnose)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Autor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Autor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeitorNome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeitorNome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning"><i class="fa fa-edit"> Alterar</i></a>
+    <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>
+</div>

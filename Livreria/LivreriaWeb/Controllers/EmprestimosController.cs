@@ -13,16 +13,22 @@
     using ReflectionIT.Mvc.Paging;
     using Microsoft.AspNetCore.Authorization;
 
-    
+
     public class EmprestimosController : Controller
     {
         private readonly IEmprestimoApp _IEmprestimoApp;
         private readonly IReservaApp _IReservaApp;
+        private readonly ILivroApp _ILivroApp;
+        private readonly ILeitorApp _ILeitorApp;
+        private readonly IAutorApp _IAutorApp;
 
-        public EmprestimosController(IEmprestimoApp emprestimo, IReservaApp reserva)
+        public EmprestimosController(IEmprestimoApp emprestimo, IReservaApp reserva, ILivroApp livro, ILeitorApp leitor, IAutorApp autor)
         {
             _IEmprestimoApp = emprestimo;
             _IReservaApp = reserva;
+            _ILivroApp = livro;
+            _ILeitorApp = leitor;
+            _IAutorApp = autor;
         }
 
 
@@ -57,29 +63,47 @@
         }
 
         // GET: Emprestimos/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-            // ViewData["IdLetor"] = new SelectList(_context.Leitores, "Id", "Id");
-            // ViewData["IdLivro"] = new SelectList(_context.Livros, "Id", "Id");
-            return View();
+            var reserva = _IReservaApp.GetEntityById(id);
+
+            var view = ToView(reserva);
+
+            return View(view);
         }
 
-        // POST: Emprestimos/Create
+        private ReservaView ToView(Reserva reserva)
+        {
+            var livro = _ILivroApp.GetEntityById(reserva.IdLivro);
+            var leitor = _ILeitorApp.GetEntityById(reserva.IdLeitor);
+            var autor = _IAutorApp.GetEntityById(livro.IdAutor);
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,DInicio,DFIm,IdLeitor,IdLivro")] Emprestimo emprestimo)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        await _context.Add(emprestimo);
+            var view = new ReservaView()
+            {
+                Id = reserva.Id,
+                Data = reserva.Data,
+                IdLeitor = reserva.IdLeitor,
+                IdLivro = reserva.IdLivro,
+                Ativo = reserva.Ativo,
+                LeitorNome = leitor.Nome,
 
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    //ViewData["IdLetor"] = new SelectList(_context.Leitores, "Id", "Id", emprestimo.IdLetor);
-        //    //ViewData["IdLivro"] = new SelectList(_context.Livros, "Id", "Id", emprestimo.IdLivro);
-        //    return View(emprestimo);
-        //}
+                Titulo = livro.Titulo,
+                Capa = livro.Capa,
+                Sipnose = livro.Sipnose,
+                
+
+            };
+
+            return view;
+        }
+
+        //POST: Emprestimos/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Emprestimo emprestimo)
+        {
+            return RedirectToAction(nameof(Index));
+        }
 
         // GET: Emprestimos/Send/5
         //public async Task<IActionResult> Send(int? id)
@@ -135,11 +159,11 @@
         //    return View(emprestimo);
         //}
 
-      
-       
+
+
         public async Task<IActionResult> CancelConfirmed(int? id)
         {
-            var reserva =  _IReservaApp.GetEntityById((int)id);
+            var reserva = _IReservaApp.GetEntityById((int)id);
             reserva.Ativo = false;
             await _IReservaApp.Update(reserva);
             return RedirectToAction(nameof(Index));

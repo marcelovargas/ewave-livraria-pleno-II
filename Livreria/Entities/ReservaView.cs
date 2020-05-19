@@ -16,6 +16,10 @@ namespace Entities
         [Display(Name = "Leitor")]
         public string LeitorNome { get; set; }
 
-        
+        [Display(Name = "Sipnose")]
+        public string Sipnose { get; set; }
+
+        [Display(Name = "Autor")]
+        public string Autor { get; set; }
     }
 }

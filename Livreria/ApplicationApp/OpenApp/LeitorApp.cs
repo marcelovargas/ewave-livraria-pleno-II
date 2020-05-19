@@ -30,6 +30,11 @@ namespace ApplicationApp.OpenApp
             
         }
 
+        public Leitor GetEntityById(string id)
+        {
+            return _ILeitor.GetEntityById(id);
+        }
+
         public async Task<List<Leitor>> List()
         {
             var list = await _ILeitor.List();
