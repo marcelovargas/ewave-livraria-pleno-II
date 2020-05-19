@@ -8,57 +8,71 @@
 <hr />
 
 <div>
-    <dl>
-        <dt>
-        </dt>
-        <dd>
-
-            @if (!string.IsNullOrEmpty(Model.Capa))
-            {
-                <img src="@Url.Content(Model.Capa)" alt="Image" style="width:70px;height:70px;" />
-            }
-            else
-            {
-                <img src="~/imagens/livros/no-image.jpg" alt="Image" style="width:70px;height:70px;" />
-            }
-        </dd>
-    </dl>
-</div>
-
-<div>
-
-
-    <dl class="row">
-
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Sipnose)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Sipnose)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Autor)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Autor)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LeitorNome)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LeitorNome)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning"><i class="fa fa-edit"> Alterar</i></a>
+    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Salvar</button>
     <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>
+
 </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <input type="hidden" asp-for="IdLeitor" />
+            <input type="hidden" asp-for="IdLivro" />
+            <div>
+
+                <dl class="row">
+                    <dt></dt>
+                    <dd>
+
+                        @if (!string.IsNullOrEmpty(Model.Capa))
+                        {
+                            <img src="@Url.Content(Model.Capa)" alt="Image" style="width:70px;height:70px;" />
+                        }
+                        else
+                        {
+                            <img src="~/imagens/livros/no-image.jpg" alt="Image" style="width:70px;height:70px;" />
+                        }
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Titulo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Titulo)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Sipnose)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Sipnose)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Autor)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Autor)
+                    </dd>
+                    <dd></dd>
+                    <dt></dt>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.LeitorNome)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.LeitorNome)
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Salvar</button>
+                <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

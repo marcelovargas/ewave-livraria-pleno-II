@@ -15,7 +15,7 @@
     using Microsoft.AspNetCore.Routing;
     using Microsoft.AspNetCore.Authorization;
 
-    [Authorize]
+   
     public class GenerosController : Controller
     {
         private readonly IGeneroApp _context;

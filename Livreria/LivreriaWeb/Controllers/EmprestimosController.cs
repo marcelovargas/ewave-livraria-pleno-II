@@ -72,6 +72,36 @@
             return View(view);
         }
 
+        //POST: Emprestimos/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ReservaView view)
+        {
+            var emprestimo = new Emprestimo()
+            {
+               
+                DInicio = DateTime.Now,
+                IdLeitor = view.IdLeitor,
+                IdLivro = view.IdLivro,
+
+            };
+
+            await _IEmprestimoApp.Add(emprestimo);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        
+
+        public async Task<IActionResult> CancelConfirmed(int? id)
+        {
+            var reserva = _IReservaApp.GetEntityById((int)id);
+            reserva.Ativo = false;
+            await _IReservaApp.Update(reserva);
+            return RedirectToAction(nameof(Index));
+        }
+
+
         private ReservaView ToView(Reserva reserva)
         {
             var livro = _ILivroApp.GetEntityById(reserva.IdLivro);
@@ -90,84 +120,13 @@
                 Titulo = livro.Titulo,
                 Capa = livro.Capa,
                 Sipnose = livro.Sipnose,
-                
+
 
             };
 
             return view;
         }
 
-        //POST: Emprestimos/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Emprestimo emprestimo)
-        {
-            return RedirectToAction(nameof(Index));
-        }
-
-        // GET: Emprestimos/Send/5
-        //public async Task<IActionResult> Send(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var emprestimo = await _context.GetEntityById((int)id);
-        //    if (emprestimo == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    // ViewData["IdLetor"] = new SelectList(_context.Leitores, "Id", "Id", emprestimo.IdLetor);
-        //    // ViewData["IdLivro"] = new SelectList(_context.Livros, "Id", "Id", emprestimo.IdLivro);
-        //    return View(emprestimo);
-        //}
-
-        //// POST: Emprestimos/Send/5
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Send(int id, [Bind("Id,DInicio,DFIm,IdLetor,IdLivro")] Emprestimo emprestimo)
-        //{
-        //    if (id != emprestimo.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            await _context.Update(emprestimo);
-
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!await EmprestimoExists(emprestimo.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    //ViewData["IdLetor"] = new SelectList(_context.Leitores, "Id", "Id", emprestimo.IdLetor);
-        //    //ViewData["IdLivro"] = new SelectList(_context.Livros, "Id", "Id", emprestimo.IdLivro);
-        //    return View(emprestimo);
-        //}
-
-
-
-        public async Task<IActionResult> CancelConfirmed(int? id)
-        {
-            var reserva = _IReservaApp.GetEntityById((int)id);
-            reserva.Ativo = false;
-            await _IReservaApp.Update(reserva);
-            return RedirectToAction(nameof(Index));
-        }
 
         //private async Task<bool> EmprestimoExists(int id)
         //{
