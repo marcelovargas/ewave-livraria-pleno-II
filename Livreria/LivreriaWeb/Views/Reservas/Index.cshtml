@@ -46,10 +46,10 @@
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
 
-                <td id="@item.Id">
+                <td>
                     <a asp-controller="Livros" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>
-                    @*<a asp-controller="Reservas" asp-action="Create" asp-route-id="@item.Id" class="btn btn-outline-success"><i class="fa fa-cart-plus"></i></a>*@
-                    <a asp-action="Create" asp-route-id="@item.Id" class="btn btn-outline-success" id="btnConfirm"><i class="fa fa-cart-plus"></i></a>
+                    <a asp-controller="Reservas" asp-action="Create" asp-route-id="@item.Id" class="btn btn-outline-success"><i class="fa fa-cart-plus"></i></a>
+                    @*<a asp-action="Create" asp-route-id="@item.Id" class="btn btn-outline-success" id="btnConfirm"><i class="fa fa-cart-plus"></i></a>*@
 
 
                 </td>

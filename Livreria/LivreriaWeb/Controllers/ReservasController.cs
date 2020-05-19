@@ -141,30 +141,8 @@
             return View(reserva);
         }
 
-        // GET: Reservas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var reserva = await _context.GetEntityById((int)id);
-            //.Include(r => r.Leitor)
-            //.Include(r => r.Livro)
-            //.FirstOrDefaultAsync(m => m.Id == id);
-            if (reserva == null)
-            {
-                return NotFound();
-            }
-
-            return View(reserva);
-        }
-
-        // POST: Reservas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+     
+        public async Task<IActionResult> Delete(int id)
         {
             var reserva = await _context.GetEntityById(id);
             await _context.Delete(reserva);
