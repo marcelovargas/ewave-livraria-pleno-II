@@ -12,7 +12,7 @@
     using ApplicationApp.Interfaces;
     using ReflectionIT.Mvc.Paging;
     using Microsoft.AspNetCore.Authorization;
-
+    using Microsoft.AspNetCore.Routing;
 
     public class EmprestimosController : Controller
     {
@@ -38,6 +38,17 @@
             var option = "A";
             var qry = _IEmprestimoApp.ListofReserved(option);
             var model = PagingList.Create(qry, 5, page, sortExpression, "Data");
+
+            return View(model);
+
+        }
+
+        public async Task<IActionResult> BookReturn (string filter, int page = 1, string sortExpression = "Titulo")
+        {
+            var qry = _IEmprestimoApp.ListWithDetails(filter).Where(x=> x.DFIm == null);
+            var model = PagingList.Create(qry, 5, page, sortExpression, "Titulo");
+            model.RouteValue = new RouteValueDictionary
+            {  { "filter", filter}    };
             return View(model);
 
         }
@@ -102,8 +113,6 @@
             return RedirectToAction(nameof(Index));
         }
 
-        
-
         public async Task<IActionResult> CancelConfirmed(int? id)
         {
             var reserva = _IReservaApp.GetEntityById((int)id);
@@ -112,7 +121,18 @@
             return RedirectToAction(nameof(Index));
         }
 
-
+        /// <summary>
+        /// Devolver Livro á Livreria
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> BookSave(int? id)
+        {
+            var emprestimo = _IEmprestimoApp.GetEntityById((int)id);
+            emprestimo.DFIm = DateTime.Now;
+            await _IEmprestimoApp.Update(emprestimo);
+            return RedirectToAction(nameof(Index));
+        }
         private ReservaView ToView(Reserva reserva)
         {
             var livro = _ILivroApp.GetEntityById(reserva.IdLivro);
@@ -139,11 +159,11 @@
         }
 
 
-        //private async Task<bool> EmprestimoExists(int id)
-        //{
-        //    var objeto = await _context.GetEntityById(id);
+        private async Task<bool> EmprestimoExists(int id)
+        {
+            var objeto =  _IEmprestimoApp.GetEntityById(id);
 
-        //    return objeto != null;
-        //}
+            return objeto != null;
+        }
     }
 }

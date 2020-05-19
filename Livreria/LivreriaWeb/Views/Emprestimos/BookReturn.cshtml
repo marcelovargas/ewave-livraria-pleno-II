@@ -1,0 +1,81 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Entities.EmprestimoView>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Retorno de livros";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" placeholder=""
+           value="@Model.RouteValue["Filter"]" />
+    <button type="submit" class="btn btn-outline-info">
+        <i class="fa fa-search"></i> Buscar
+    </button>
+</form>
+
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr class="table-primary">
+            <th>
+                @Html.SortableHeaderFor(model => model.DInicio, this.Model)
+            </th>
+
+            <th>
+                @Html.SortableHeaderFor(model => model.Capa, this.Model)
+            </th>
+
+            <th>
+                @Html.SortableHeaderFor(model => model.Titulo, this.Model)
+            </th>
+
+            <th>
+                @Html.SortableHeaderFor(model => model.LeitorNome, this.Model)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DInicio)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Capa))
+                    {
+                        <img src="@Url.Content(item.Capa)" alt="Image" style="width:70px;height:70px;" />
+                    }
+                    else
+                    {
+                        <img src="~/imagens/livros/no-image.jpg" alt="Image" style="width:70px;height:70px;" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeitorNome)
+                </td>
+
+                <td id="@item.Id">
+                    <a asp-action="BookSave" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa fa-hand-holding"></i></a>
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>

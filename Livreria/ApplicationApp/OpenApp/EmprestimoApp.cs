@@ -53,6 +53,11 @@
            return _IEmprestimo.ListofReserved(option);
         }
 
+        public IList<EmprestimoView> ListWithDetails(string filter)
+        {
+            return _IEmprestimo.ListWithDetails(filter);
+        }
+
         public async Task Update(Emprestimo Objeto)
         {
             await _IEmprestimo.Update(Objeto);

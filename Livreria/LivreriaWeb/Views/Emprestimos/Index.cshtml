@@ -3,10 +3,15 @@
 @addTagHelper *, ReflectionIT.Mvc.Paging
 
 @{
-    ViewData["Title"] = "Emprestimos";
+    ViewData["Title"] = "Envio/Despacho de Livros";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<div>
+    
+    <a asp-action="BookReturn" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Get</a>
+</div>
 
 <nav aria-label="Suppliers navigation example">
     @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })

@@ -8,5 +8,6 @@
     {
         IList<ReservaView> ListofReserved(string option);
         Task AddWithControl(Emprestimo objeto);
+        IList<EmprestimoView> ListWithDetails(string filter);
     }
 }

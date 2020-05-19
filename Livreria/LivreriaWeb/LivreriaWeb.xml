@@ -329,6 +329,13 @@
             <param name="id">Id exclusivo de reserva de livro.</param>
             <returns></returns>
         </member>
+        <member name="M:LivreriaWeb.Controllers.EmprestimosController.BookSave(System.Nullable{System.Int32})">
+            <summary>
+            Devolver Livro á Livreria
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:LivreriaWeb.Controllers.GenerosController.Index(System.String,System.Int32,System.String)">
             <summary>
             Retorna uma lista de generos
