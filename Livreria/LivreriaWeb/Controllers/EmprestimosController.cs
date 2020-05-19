@@ -85,8 +85,19 @@
                 IdLivro = view.IdLivro,
 
             };
+            try
+            {
+                await _IEmprestimoApp.Add(emprestimo);
+            }
+            catch (Exception)
+            {
 
-            await _IEmprestimoApp.Add(emprestimo);
+                return RedirectToAction(nameof(Index));
+            }
+
+            var reserva = _IReservaApp.GetEntityById(view.Id);
+            reserva.Ativo = false;
+            await _IReservaApp.Update(reserva);
 
             return RedirectToAction(nameof(Index));
         }

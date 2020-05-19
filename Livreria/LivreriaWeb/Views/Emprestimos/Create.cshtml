@@ -1,17 +1,12 @@
 ﻿@model Entities.ReservaView
 
 @{
-    ViewData["Title"] = (Model.Titulo);
+    ViewData["Title"] = "Atender Reservas";
 }
 
 <h1>@ViewData["Title"]</h1>
 <hr />
 
-<div>
-    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Salvar</button>
-    <a asp-action="Index" class="btn btn-outline-success"><i class="fa fa-chevron-left"></i> Volver</a>
-
-</div>
 
 <div class="row">
     <div class="col-md-4">
