@@ -31,6 +31,10 @@
             _IAutorApp = autor;
         }
 
+        public IActionResult Lend()
+        {
+            return View();
+        }
 
         // GET: Emprestimos       
         public async Task<IActionResult> Index(int page = 1, string sortExpression = "Data")
