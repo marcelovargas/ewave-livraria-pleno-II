@@ -22,7 +22,7 @@
         {
             using (var db = new ContextBase(_OptionsBuilder))
             {
-                int cant = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor).Count();
+                int cant = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor &&  x.DFIm == null).Count();
 
                 //var atra = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor)
 
