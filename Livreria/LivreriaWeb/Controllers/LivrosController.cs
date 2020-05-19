@@ -71,7 +71,7 @@
                 return NotFound();
             }
 
-            var livro = await _ILivroApp.GetEntityById((int)id);
+            var livro =  _ILivroApp.GetEntityById((int)id);
 
             if (livro == null)
             {
@@ -90,8 +90,8 @@
             var view = new LivroView()
             {
                 Id = livro.Id,
-                Autor = autor.Result.Nome,
-                Genero = genero.Result.Nome,
+                Autor = autor.Nome,
+                Genero = genero.Nome,
                 Ativo = livro.Ativo,
                 Sipnose = livro.Sipnose,
                 Capa = livro.Capa,
@@ -161,7 +161,7 @@
                 return NotFound();
             }
 
-            var livro = await _ILivroApp.GetEntityById((int)id);
+            var livro =  _ILivroApp.GetEntityById((int)id);
             if (livro == null)
             {
                 return NotFound();
@@ -227,7 +227,7 @@
                 return NotFound();
             }
 
-            var livro = await _ILivroApp.GetEntityById((int)id);
+            var livro =  _ILivroApp.GetEntityById((int)id);
 
             if (livro == null)
             {
@@ -247,7 +247,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var livro = await _ILivroApp.GetEntityById(id);
+            var livro =  _ILivroApp.GetEntityById(id);
             await _ILivroApp.Delete(livro);
             return RedirectToAction(nameof(Index));
         }
@@ -259,7 +259,7 @@
         /// <returns></returns>
         private async Task<bool> LivroExists(int id)
         {
-            var objeto = await _ILivroApp.GetEntityById(id);
+            var objeto =  _ILivroApp.GetEntityById(id);
 
             return objeto != null;
 

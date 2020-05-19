@@ -50,7 +50,7 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<Reserva>> GetReserva(int id)
         {
-            var reserva = await _context.GetEntityById(id);
+            var reserva =  _context.GetEntityById(id);
 
             if (reserva == null)
             {
@@ -118,7 +118,7 @@
         [HttpDelete("{id}")]
         public async Task<ActionResult<Reserva>> DeleteReserva(int id)
         {
-            var reserva = await _context.GetEntityById(id);
+            var reserva =  _context.GetEntityById(id);
             if (reserva == null)
             {
                 return NotFound();
@@ -135,7 +135,7 @@
         /// <returns></returns>
         private async Task<bool> ReservaExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

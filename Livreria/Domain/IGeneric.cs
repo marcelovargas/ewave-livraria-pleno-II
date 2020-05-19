@@ -7,7 +7,7 @@
         Task Add(T objeto);
         Task Update(T objeto);
         Task Delete(T objeto);
-        Task<T> GetEntityById(int Id);
+        T GetEntityById(int Id);
         Task<List<T>> List();
 
     }

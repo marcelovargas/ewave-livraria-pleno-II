@@ -44,7 +44,7 @@
                 return NotFound();
             }
 
-            var instituicao = await _context.GetEntityById((int)id);
+            var instituicao =  _context.GetEntityById((int)id);
             //    .FirstOrDefaultAsync(m => m.Id == id);
             //if (instituicao == null)
             //{
@@ -82,7 +82,7 @@
                 return NotFound();
             }
 
-            var instituicao = await _context.GetEntityById((int)id);
+            var instituicao = _context.GetEntityById((int)id);
             if (instituicao == null)
             {
                 return NotFound();
@@ -131,7 +131,7 @@
                 return NotFound();
             }
 
-            var instituicao = await _context.GetEntityById((int)id);
+            var instituicao =  _context.GetEntityById((int)id);
             // .FirstOrDefaultAsync(m => m.Id == id);
             if (instituicao == null)
             {
@@ -146,7 +146,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var instituicao = await _context.GetEntityById(id);
+            var instituicao =  _context.GetEntityById(id);
             await _context.Delete(instituicao);
 
             return RedirectToAction(nameof(Index));
@@ -154,7 +154,7 @@
 
         private async Task<bool> InstituicaoExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

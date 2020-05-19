@@ -50,7 +50,7 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<Instituicao>> GetInstituicao(int id)
         {
-            var instituicao = await _context.GetEntityById(id);
+            var instituicao =  _context.GetEntityById(id);
 
             if (instituicao == null)
             {
@@ -117,7 +117,7 @@
         [HttpDelete("{id}")]
         public async Task<ActionResult<Instituicao>> DeleteInstituicao(int id)
         {
-            var instituicao = await _context.GetEntityById(id);
+            var instituicao =  _context.GetEntityById(id);
             if (instituicao == null)
             {
                 return NotFound();
@@ -135,7 +135,7 @@
         /// <returns></returns>
         private async Task<bool> InstituicaoExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

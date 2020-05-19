@@ -51,7 +51,7 @@
                 return NotFound();
             }
 
-            var genero = await _context.GetEntityById((int)id);
+            var genero =  _context.GetEntityById((int)id);
 
             if (genero == null)
             {
@@ -89,7 +89,7 @@
                 return NotFound();
             }
 
-            var genero = await _context.GetEntityById((int)id);
+            var genero =  _context.GetEntityById((int)id);
             if (genero == null)
             {
                 return NotFound();
@@ -139,7 +139,7 @@
                 return NotFound();
             }
 
-            var genero = await _context.GetEntityById((int)id);
+            var genero =  _context.GetEntityById((int)id);
             if (genero == null)
             {
                 return NotFound();
@@ -153,7 +153,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var genero = await _context.GetEntityById(id);
+            var genero =  _context.GetEntityById(id);
             await _context.Delete(genero);
 
             return RedirectToAction(nameof(Index));
@@ -161,7 +161,7 @@
 
         private async Task<bool> GeneroExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

@@ -22,17 +22,10 @@
             await _IGenero.Delete(Objeto);
         }
 
-        public async Task<Genero> GetEntityById(int Id)
+        public Genero GetEntityById(int Id)
         {
-            var record = await _IGenero.GetEntityById(Id);
-            if (record != null)
-            {
-                return record;
-            }
-            else
-            {
-                return new Genero();
-            }
+            return _IGenero.GetEntityById(Id);
+            
         }
 
 

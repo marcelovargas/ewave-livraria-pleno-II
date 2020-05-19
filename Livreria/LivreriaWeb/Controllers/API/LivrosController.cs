@@ -49,7 +49,7 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<Livro>> GetLivro(int id)
         {
-            var livro = await _context.GetEntityById(id);
+            var livro =  _context.GetEntityById(id);
 
             if (livro == null)
             {
@@ -116,7 +116,7 @@
         [HttpDelete("{id}")]
         public async Task<ActionResult<Livro>> DeleteLivro(int id)
         {
-            var livro = await _context.GetEntityById(id);
+            var livro =  _context.GetEntityById(id);
             if (livro == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@
         /// <returns></returns>
         private async Task<bool> LivroExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

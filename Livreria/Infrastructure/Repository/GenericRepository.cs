@@ -49,11 +49,11 @@ namespace Infrastructure.Repository
             }
         }
 
-        public async Task<T> GetEntityById(int Id)
+        public T GetEntityById(int Id)
         {
             using (var data = new ContextBase(_OptionsBuilder))
             {
-               return await data.Set<T>().FindAsync(Id);
+                return data.Set<T>().Find(Id);
             }
         }
 

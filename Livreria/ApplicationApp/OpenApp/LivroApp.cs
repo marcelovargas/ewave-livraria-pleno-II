@@ -22,17 +22,10 @@
             await _ILivro.Delete(Objeto);
         }
 
-        public async Task<Livro> GetEntityById(int Id)
+        public  Livro GetEntityById(int Id)
         {
-            var record = await _ILivro.GetEntityById(Id);
-            if (record != null)
-            {
-                return record;
-            }
-            else
-            {
-                return new Livro();
-            }
+            return _ILivro.GetEntityById(Id);
+            
         }
 
 

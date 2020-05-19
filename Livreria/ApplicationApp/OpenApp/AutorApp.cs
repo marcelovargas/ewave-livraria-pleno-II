@@ -22,17 +22,11 @@
             await _IAutor.Delete(Objeto);
         }
 
-        public async Task<Autor> GetEntityById(int Id)
+        public  Autor GetEntityById(int Id)
         {
-            var record = await _IAutor.GetEntityById(Id);
-            if (record != null)
-            {
-                return record;
-            }
-            else
-            {
-                return new Autor();
-            }
+            return  _IAutor.GetEntityById(Id);
+           
+            
         }
 
 

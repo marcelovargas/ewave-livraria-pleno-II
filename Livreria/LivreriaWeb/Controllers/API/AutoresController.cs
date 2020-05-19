@@ -49,7 +49,7 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<Autor>> GetAutor(int id)
         {
-            var autor = await _context.GetEntityById(id);
+            var autor =  _context.GetEntityById(id);
 
             if (autor == null)
             {
@@ -116,7 +116,7 @@
         [HttpDelete("{id}")]
         public async Task<ActionResult<Autor>> DeleteAutor(int id)
         {
-            var autor = await _context.GetEntityById(id);
+            var autor =  _context.GetEntityById(id);
             if (autor == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@
         /// <returns></returns>
         private async Task<bool> AutorExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

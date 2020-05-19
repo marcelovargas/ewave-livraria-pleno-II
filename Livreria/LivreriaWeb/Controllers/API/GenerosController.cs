@@ -48,7 +48,7 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<Genero>> GetGenero(int id)
         {
-            var genero = await _context.GetEntityById(id);
+            var genero =  _context.GetEntityById(id);
 
             if (genero == null)
             {
@@ -116,7 +116,7 @@
         [HttpDelete("{id}")]
         public async Task<ActionResult<Genero>> DeleteGenero(int id)
         {
-            var genero = await _context.GetEntityById(id);
+            var genero =  _context.GetEntityById(id);
             if (genero == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@
         /// <returns></returns>
         private async Task<bool> GeneroExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

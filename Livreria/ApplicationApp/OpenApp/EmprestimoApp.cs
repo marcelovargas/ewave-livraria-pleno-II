@@ -23,17 +23,10 @@
             await _IEmprestimo.Delete(Objeto);
         }
 
-        public async Task<Emprestimo> GetEntityById(int Id)
+        public  Emprestimo GetEntityById(int Id)
         {
-            var record = await _IEmprestimo.GetEntityById(Id);
-            if (record != null)
-            {
-                return record;
-            }
-            else
-            {
-                return new Emprestimo();
-            }
+            return _IEmprestimo.GetEntityById(Id);
+           
         }
 
 

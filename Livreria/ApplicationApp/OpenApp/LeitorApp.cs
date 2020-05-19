@@ -24,17 +24,10 @@ namespace ApplicationApp.OpenApp
             await _ILeitor.Delete(Objeto);
         }
 
-        public async Task<Leitor> GetEntityById(int Id)
+        public Leitor GetEntityById(int Id)
         {
-            var record = await _ILeitor.GetEntityById(Id);
-            if (record != null)
-            {
-                return record;
-            }
-            else
-            {
-                return new Leitor();
-            }
+            return _ILeitor.GetEntityById(Id);
+            
         }
 
         public async Task<List<Leitor>> List()

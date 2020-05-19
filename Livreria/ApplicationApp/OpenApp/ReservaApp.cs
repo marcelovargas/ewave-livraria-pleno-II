@@ -28,17 +28,10 @@
             await _IReserva.Delete(Objeto);
         }
 
-        public async Task<Reserva> GetEntityById(int Id)
+        public Reserva GetEntityById(int Id)
         {
-            var record = await _IReserva.GetEntityById(Id);
-            if (record != null)
-            {
-                return record;
-            }
-            else
-            {
-                return new Reserva();
-            }
+            return _IReserva.GetEntityById(Id);
+           
         }
 
 

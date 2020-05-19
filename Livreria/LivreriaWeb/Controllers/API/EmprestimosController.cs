@@ -49,7 +49,7 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<Emprestimo>> GetEmprestimo(int id)
         {
-            var emprestimo = await _context.GetEntityById(id);
+            var emprestimo =  _context.GetEntityById(id);
 
             if (emprestimo == null)
             {
@@ -115,7 +115,7 @@
         [HttpDelete("{id}")]
         public async Task<ActionResult<Emprestimo>> DeleteEmprestimo(int id)
         {
-            var emprestimo = await _context.GetEntityById(id);
+            var emprestimo =  _context.GetEntityById(id);
             if (emprestimo == null)
             {
                 return NotFound();
@@ -133,7 +133,7 @@
         /// <returns></returns>
         private async Task<bool> EmprestimoExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

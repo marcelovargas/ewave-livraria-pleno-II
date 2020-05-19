@@ -23,17 +23,10 @@
             await _IInstituicao.Delete(Objeto);
         }
 
-        public async Task<Instituicao> GetEntityById(int Id)
+        public Instituicao GetEntityById(int Id)
         {
-            var record = await _IInstituicao.GetEntityById(Id);
-            if (record != null)
-            {
-                return record;
-            }
-            else
-            {
-                return new Instituicao();
-            }
+            return _IInstituicao.GetEntityById(Id);
+            
         }
 
 

@@ -46,7 +46,7 @@
                 return NotFound();
             }
 
-            var autor = await _context.GetEntityById((int)id);
+            var autor =  _context.GetEntityById((int)id);
             // .FirstOrDefaultAsync(m => m.Id == id);
             if (autor == null)
             {
@@ -85,7 +85,7 @@
                 return NotFound();
             }
 
-            var autor = await _context.GetEntityById((int)id);
+            var autor =  _context.GetEntityById((int)id);
             if (autor == null)
             {
                 return NotFound();
@@ -135,7 +135,7 @@
                 return NotFound();
             }
 
-            var autor = await _context.GetEntityById((int)id);
+            var autor =  _context.GetEntityById((int)id);
 
             if (autor == null)
             {
@@ -150,7 +150,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var autor = await _context.GetEntityById(id);
+            var autor =  _context.GetEntityById(id);
             await _context.Delete(autor);
 
             return RedirectToAction(nameof(Index));
@@ -158,7 +158,7 @@
 
         private async Task<bool> AutorExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

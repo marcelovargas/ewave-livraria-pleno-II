@@ -87,23 +87,23 @@
 
 
 
-        // GET: Reservas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Reservas/Edit/5
+        //public  Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var reserva = await _context.GetEntityById((int)id);
-            if (reserva == null)
-            {
-                return NotFound();
-            }
-            // ViewData["IdLetor"] = new SelectList(_context.Leitores, "Id", "Id", reserva.IdLetor);
-            // ViewData["IdLivro"] = new SelectList(_context.Livros, "Id", "Id", reserva.IdLivro);
-            return View(reserva);
-        }
+        //    var reserva =  _context.GetEntityById((int)id);
+        //    if (reserva == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    // ViewData["IdLetor"] = new SelectList(_context.Leitores, "Id", "Id", reserva.IdLetor);
+        //    // ViewData["IdLivro"] = new SelectList(_context.Livros, "Id", "Id", reserva.IdLivro);
+        //    return View(reserva);
+        //}
 
         // POST: Reservas/Edit/5
 
@@ -144,7 +144,7 @@
      
         public async Task<IActionResult> Delete(int id)
         {
-            var reserva = await _context.GetEntityById(id);
+            var reserva =  _context.GetEntityById(id);
             await _context.Delete(reserva);
 
             return RedirectToAction(nameof(Index));
@@ -152,7 +152,7 @@
 
         private async Task<bool> ReservaExists(int id)
         {
-            var objeto = await _context.GetEntityById(id);
+            var objeto =  _context.GetEntityById(id);
 
             return objeto != null;
         }

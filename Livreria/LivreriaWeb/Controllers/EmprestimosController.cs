@@ -139,7 +139,7 @@
        
         public async Task<IActionResult> CancelConfirmed(int? id)
         {
-            var reserva = await _IReservaApp.GetEntityById((int)id);
+            var reserva =  _IReservaApp.GetEntityById((int)id);
             reserva.Ativo = false;
             await _IReservaApp.Update(reserva);
             return RedirectToAction(nameof(Index));
