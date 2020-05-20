@@ -36,17 +36,19 @@ As ferramentas informaticas, linguagem, metodologias e estructura a usar foram:
 
 Para a criação da base de datos, usei o CODE FIRST.
  
- ### Problemas
+ ### Problemas e recomendações
  
  - Perder muito tempo, ao não poder concluir o tema dos roles.
  - O CODE FIRST, gera as tabelas em dois tempos, (por os dois dbcontext).
+ - Usar o usuario de teste.
+ 
 
 ### Resolução as problemas.
 
 - Usar dois dbcontext.
 - Usar o script para gerar a BD.
 
-### usuario de prueba
+### usuario de teste
 usuario: 	ewave@teste.com 
 password:	Asd123. 
  
