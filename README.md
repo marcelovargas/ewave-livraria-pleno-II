@@ -26,6 +26,10 @@ Na abordagem adotada para poder fornecer uma solução de computador para a bibl
 - Administrador, no comando dos emprestimos / devolução dos livros.
 - Leitor, ele pode reservar os livros, para depois pegarlos com o administrador.
 
+Para as reservas dos livros, coloquei uma duração de 1 día, se o usuario não pega o livro e outro leitor faz a solicitação pode resrvar o livro.
+
+Considerei tambem que o livro é unico e que não tem copias, ja que o tempo é corto.
+
 As ferramentas informaticas, linguagem, metodologias e estructura a usar foram:
  
 - ASp.net Core c#
@@ -38,7 +42,7 @@ Para a criação da base de datos, usei o CODE FIRST.
  
  ### Problemas 
  
- - Perder muito tempo, ao não poder concluir o tema dos roles.
+ - Não poder concluir o tema dos roles, problema com o Identity. 
  - Controle de usuarios, não concluido. Apenas  para ter o cadastro/ acesso. 
  - O CODE FIRST, gera as tabelas em dois tempos, por o problema nas relaçoes dos dois DbContext.
 
