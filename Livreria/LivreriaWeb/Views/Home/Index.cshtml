@@ -2,9 +2,33 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="jumbotron">
-        <h1 class="display-3">Editora To Do</h1>
-        <p class="lead">Emprestimos de livros</p>
-        <hr class="my-4">
-      
+<div >
+    <h1 class="display-3">Editora To Do</h1>
+    <p class="lead">Emprestimos de livros</p>
+    <hr class="my-4">
+
+</div>
+<div class="row">
+
+    <div class="col-md-4" align="center">
+
+        <h2><p align="center">Administradores</p></h2>
+        <a href='@Url.Action("Admin", "Home")'>
+            <img src="~/imagens/livros/admin.png" width="200" height="200" alt="Adminstradores" />
+        </a>
+        <p></p>
+        <p>.....</p>
+
     </div>
+
+    <div class="col-md-4" align="center">
+
+        <h2><p align="center">Leitores</p></h2>
+        <a href='@Url.Action("Leitor", "Home")'>
+            <img src="~/imagens/livros/leitor.png" width="200" height="200" alt="Leitores" />
+        </a>
+        <p></p>
+        <p>....</p>
+
+    </div>
+</div>
