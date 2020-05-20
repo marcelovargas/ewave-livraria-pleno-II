@@ -38,9 +38,13 @@ Para a criação da base de datos, usei o CODE FIRST.
  
  ### Problemas
  
- - Perder muito tempo, ao não poder concluir o tema dos roles, problema de usar o dbcontext com o entity, (solução usar dois dbcontext)
- - Ao ter dois dbcontext o CODE FIRST, gera as tabelas em dois tempos, (Solução usar o script para criar o BD).
+ - Perder muito tempo, ao não poder concluir o tema dos roles.
+ - O CODE FIRST, gera as tabelas em dois tempos, (por os dois dbcontext).
 
+### Resolução as problemas.
+
+- Usar dois dbcontext.
+- Usar o script para gerar a BD.
 
 ### usuario de prueba
 usuario: 	ewave@teste.com 
