@@ -6,7 +6,6 @@
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity.Core.Objects;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -24,47 +23,71 @@
             using (var db = new ContextBase(_OptionsBuilder))
             {
                 Mensagem mensagem = new Mensagem();
+                bool atraso = false;
 
-
-                int cant = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor && x.DFIm == null).Count();
-
-                var ultimo = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor )
-                                             .OrderByDescending(x => x.Id)
-                                             .Take(1);
-
-               
-                //var atraso = ultimo
-                //    .Where(x => x.DFIm != null)
-                //    .Where(i => EntityFunctions.DiffDays(i.DInicio, i.DFIm) > 30).Count();
-
-                var  atraso = 0;
-               
-
-                if (cant < 2)
+                try
                 {
+                    var cant = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor && x.DFIm == null);
 
-                    if (atraso == 1)
+                    var ultimo = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor).ToArray().LastOrDefault();
+
+                    if (ultimo == null)
                     {
-                        mensagem.Titulo = "";
-                        mensagem.Corpo = "Erro, O leitor na ultima devolução, escedeu os 30 días !!!";
+                        atraso = false;
                     }
                     else
                     {
-                        await db.Emprestimos.AddAsync(objeto);
-                        await db.SaveChangesAsync();
+                        DateTime date = (DateTime)ultimo.DFIm;
 
-                        mensagem.Titulo = "Info";
-                        mensagem.Corpo = "O cadastro foi efectuado com sucesso !!!";
+                        if (ultimo.DInicio.AddDays(30) < date)
+                        {
+                            atraso = false;
+
+                        }
+                        else
+                        {
+                            atraso = true;
+                        }
+                    }
+                    
+
+
+                    if (cant.Count() < 2)
+                    {
+                        DateTime entrega = (DateTime)ultimo.DFIm;
+                        if (atraso && entrega.AddDays(30) < DateTime.Now)
+                        {
+
+                            mensagem.Titulo = "";
+                            mensagem.Corpo = "O leitor esta  impossibilitado, tem que esperar até o " + entrega.AddDays(30).ToString();
+                        }
+
+                        else
+                        {
+                                await db.Emprestimos.AddAsync(objeto);
+                                await db.SaveChangesAsync();
+
+                                mensagem.Titulo = "Info";
+                                mensagem.Corpo = "O cadastro foi efectuado com sucesso !!!";
+                                                       
+                        }
+
+                    }
+                    else
+                    {
+                        mensagem.Titulo = "";
+                        mensagem.Corpo = "Erro, limite excedido, o leitor registrou 2 livros em sua posse.";
                     }
 
+                    return mensagem;
                 }
-                else
+                catch (Exception)
                 {
                     mensagem.Titulo = "";
-                    mensagem.Corpo = "Erro, limite excedido, o leitor registrou 2 livros em sua posse.";
+                    mensagem.Corpo = "Erro, no BD";
+                    return mensagem;
                 }
-
-                return mensagem;
+                
 
             }
         }
