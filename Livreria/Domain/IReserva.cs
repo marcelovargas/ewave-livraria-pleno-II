@@ -8,6 +8,6 @@
     {
         IList<ReservaView> List(string leitor);
         IList<LivroView> ListOfDetails();
-        Task AddUnique(Reserva objeto);
+        Task<Mensagem> AddUnique(Reserva objeto);
     }
 }

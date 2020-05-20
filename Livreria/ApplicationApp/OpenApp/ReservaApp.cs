@@ -18,9 +18,9 @@
             await _IReserva.Add(Objeto);
         }
 
-        public async Task AddUnique(Reserva objeto)
+        public async Task<Mensagem> AddUnique(Reserva objeto)
         {
-            await _IReserva.AddUnique(objeto);
+           return  await _IReserva.AddUnique(objeto);
         }
 
         public async Task Delete(Reserva Objeto)

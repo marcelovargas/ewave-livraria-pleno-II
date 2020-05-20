@@ -37,7 +37,7 @@
             var model = PagingList.Create(qry, 5, page, sortExpression, "Titulo");
 
             var leitor = CurrentUser();
-            
+
             ViewBag.Carinho = _context.List(leitor);
 
             return View(model);
@@ -66,7 +66,7 @@
 
         // GET: Reservas/Create      
         /// <summary>
-        /// lksdfj
+        /// Cadastra uma reserva
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -79,8 +79,13 @@
                 Data = DateTime.Now,
                 IdLeitor = CurrentUser(),
 
-        };
-            await _context.AddUnique(objeto);
+            };
+
+            var message = await _context.AddUnique(objeto);
+
+            TempData["title"] = message.Titulo;
+            TempData["message"] = message.Corpo;
+
             return this.RedirectToAction("Index");
         }
 
@@ -141,10 +146,10 @@
             return View(reserva);
         }
 
-     
+
         public async Task<IActionResult> Delete(int id)
         {
-            var reserva =  _context.GetEntityById(id);
+            var reserva = _context.GetEntityById(id);
             await _context.Delete(reserva);
 
             return RedirectToAction(nameof(Index));
@@ -152,7 +157,7 @@
 
         private async Task<bool> ReservaExists(int id)
         {
-            var objeto =  _context.GetEntityById(id);
+            var objeto = _context.GetEntityById(id);
 
             return objeto != null;
         }

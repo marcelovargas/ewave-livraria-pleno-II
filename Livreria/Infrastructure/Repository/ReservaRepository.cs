@@ -17,10 +17,12 @@
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public async Task AddUnique(Reserva objeto)
+        public async Task<Mensagem> AddUnique(Reserva objeto)
         {
             using (var data = new ContextBase(_OptionsBuilder))
             {
+                Mensagem mensagem = new Mensagem();
+
                 var reservas = data.Reservas.Where(x => x.Ativo == true && x.IdLivro == objeto.IdLivro).Count();
                 var emprestimos = data.Emprestimos.Where(x=> x.IdLivro == objeto.IdLivro && x.DFIm == null).Count();
 
@@ -28,7 +30,16 @@
                 {
                     await data.AddAsync(objeto);
                     await data.SaveChangesAsync();
+                    mensagem.Titulo = "Info";
+                    mensagem.Corpo = "O cadastro foi efectuado com sucesso !!!";
                 }
+                else
+                {
+                    mensagem.Titulo = "Erro";
+                    mensagem.Corpo = "Erro, o cadastro não foi efectuado com sucesso !!!";
+                }
+
+                return mensagem;
             }
         }
 
@@ -52,6 +63,9 @@
 
             }
         }
+
+        
+        
 
         IList<ReservaView> IReserva.List(string leitor)
         {

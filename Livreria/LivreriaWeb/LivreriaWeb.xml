@@ -431,7 +431,7 @@
         </member>
         <member name="M:LivreriaWeb.Controllers.ReservasController.Create(System.Nullable{System.Int32})">
             <summary>
-            lksdfj
+            Cadastra uma reserva
             </summary>
             <param name="id"></param>
             <returns></returns>
