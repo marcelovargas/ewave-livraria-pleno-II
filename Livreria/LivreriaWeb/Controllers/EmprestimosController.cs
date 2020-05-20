@@ -14,6 +14,8 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Routing;
 
+
+    [Authorize]
     public class EmprestimosController : Controller
     {
         private readonly IEmprestimoApp _IEmprestimoApp;

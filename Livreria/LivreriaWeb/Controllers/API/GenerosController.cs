@@ -34,9 +34,10 @@
         /// <returns></returns>
         // GET: api/Generos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Genero>>> GetGeneros()
+        public ActionResult<IEnumerable<Genero>> GetGeneros()
         {
-            return await _context.List();
+            var list = _context.List();
+            return Ok(list);
         }
 
         // GET: api/Generos/5

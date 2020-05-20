@@ -14,7 +14,7 @@
     using ReflectionIT.Mvc.Paging;
     using Microsoft.AspNetCore.Routing;
 
-   // [Authorize]
+   [Authorize]
     public class AutoresController : Controller
     {
         private readonly IAutorApp _context;

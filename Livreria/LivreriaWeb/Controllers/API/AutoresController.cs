@@ -35,9 +35,10 @@
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Autor>>> GetAutores()
+        public ActionResult<IEnumerable<Autor>> GetAutores()
         {
-            return await _context.List();
+            var list =  _context.List();
+            return Ok(list);
         }
 
         // GET: api/Autores/5

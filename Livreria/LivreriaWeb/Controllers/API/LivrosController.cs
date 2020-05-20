@@ -35,10 +35,12 @@
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Livro>>> GetLivros()
+        public ActionResult<IEnumerable<Livro>> GetLivros()
         {
-            return await _context.List();
+            var list = _context.List();
+            return Ok(list);
         }
+
 
         // GET: api/Livros/5
         /// <summary>

@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationApp", "Applicati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LivreriaWeb", "LivreriaWeb\LivreriaWeb.csproj", "{A46D81B6-9E9F-4280-9A47-8A74461DEFD2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.  Unit Test", "6.  Unit Test", "{3A986E5A-DF5E-4F2C-B453-90ECB4504B8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivreriaXUnitTest", "LivreriaXUnitTest\LivreriaXUnitTest.csproj", "{8343F5F5-D7C3-46F8-A810-0537E7571A41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{A46D81B6-9E9F-4280-9A47-8A74461DEFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A46D81B6-9E9F-4280-9A47-8A74461DEFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46D81B6-9E9F-4280-9A47-8A74461DEFD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8343F5F5-D7C3-46F8-A810-0537E7571A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8343F5F5-D7C3-46F8-A810-0537E7571A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8343F5F5-D7C3-46F8-A810-0537E7571A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8343F5F5-D7C3-46F8-A810-0537E7571A41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +67,7 @@ Global
 		{49E499B9-97DE-4197-BAD9-BB9783322BD5} = {A534462F-B1A9-414F-AC7B-A0235131F5D5}
 		{96A21D73-9E74-4349-8482-0CCACC81E7C6} = {67DF63C3-3F2B-4C8D-8776-5F8BEE47500E}
 		{A46D81B6-9E9F-4280-9A47-8A74461DEFD2} = {D3F9507A-C9AE-4D9C-8157-9D98083DB46C}
+		{8343F5F5-D7C3-46F8-A810-0537E7571A41} = {3A986E5A-DF5E-4F2C-B453-90ECB4504B8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C98B99F6-B1C1-41C4-944C-C9EB47711A04}
