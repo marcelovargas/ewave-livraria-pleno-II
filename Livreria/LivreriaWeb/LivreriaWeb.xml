@@ -329,11 +329,37 @@
             <param name="id">Id exclusivo de reserva de livro.</param>
             <returns></returns>
         </member>
+        <member name="M:LivreriaWeb.Controllers.EmprestimosController.BookReturn(System.String,System.Int32,System.String)">
+            <summary>
+            Retorna a lista dos livros que forom emprestadas.
+            para ser devueltos.
+            </summary>
+            <param name="filter"> filtro</param>
+            <param name="page">pagina</param>
+            <param name="sortExpression">ordem</param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWeb.Controllers.EmprestimosController.Create(Entities.ReservaView)">
+            <summary>
+            Cria um cadastro de emprestamo
+            Atualiza o cadastro de reserva, para dizer que ja foi 
+            atendida.
+            </summary>
+            <param name="view"></param>
+            <returns></returns>
+        </member>
         <member name="M:LivreriaWeb.Controllers.EmprestimosController.BookSave(System.Nullable{System.Int32})">
             <summary>
-            Devolver Livro á Livreria
+            Cadastra a devolução do Livro.
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWeb.Controllers.EmprestimosController.ToView(Entities.Reserva)">
+            <summary>
+            Tranforma o dado para mostrar na view.
+            </summary>
+            <param name="reserva"></param>
             <returns></returns>
         </member>
         <member name="M:LivreriaWeb.Controllers.GenerosController.Index(System.String,System.Int32,System.String)">
@@ -429,11 +455,26 @@
             Mostrar as Viewdatas nos formularios
             </summary>
         </member>
+        <member name="M:LivreriaWeb.Controllers.ReservasController.Index(System.Int32,System.String)">
+            <summary>
+            Retorna uma lista dos livros reservados pelo leitor.
+            (usuario atual).
+            </summary>
+            <param name="page"></param>
+            <param name="sortExpression"></param>
+            <returns></returns>
+        </member>
         <member name="M:LivreriaWeb.Controllers.ReservasController.Create(System.Nullable{System.Int32})">
             <summary>
             Cadastra uma reserva
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWeb.Controllers.ReservasController.CurrentUser">
+            <summary>
+            Obtiene o usuario atual logueado.
+            </summary>
             <returns></returns>
         </member>
         <member name="T:LivreriaWeb.Helpers.FilesHelper">

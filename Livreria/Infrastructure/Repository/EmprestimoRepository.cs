@@ -6,6 +6,7 @@
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity.Core.Objects;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -23,25 +24,39 @@
             using (var db = new ContextBase(_OptionsBuilder))
             {
                 Mensagem mensagem = new Mensagem();
-                
+
 
                 int cant = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor && x.DFIm == null).Count();
 
-                //var atra = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor)
+                var ultimo = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor )
+                                             .OrderByDescending(x => x.Id)
+                                             .Take(1);
 
-                //             .OrderByDescending(x => x.Id)
-                //             .Take(1);
+               
+                //var atraso = ultimo
+                //    .Where(x => x.DFIm != null)
+                //    .Where(i => EntityFunctions.DiffDays(i.DInicio, i.DFIm) > 30).Count();
 
-
+                var  atraso = 0;
+               
 
                 if (cant < 2)
                 {
-                    await db.Emprestimos.AddAsync(objeto);
-                    await db.SaveChangesAsync();
 
-                    mensagem.Titulo = "Info";
-                    mensagem.Corpo = "O cadastro foi efectuado com sucesso !!!";
-                    
+                    if (atraso == 1)
+                    {
+                        mensagem.Titulo = "";
+                        mensagem.Corpo = "Erro, O leitor na ultima devolução, escedeu os 30 días !!!";
+                    }
+                    else
+                    {
+                        await db.Emprestimos.AddAsync(objeto);
+                        await db.SaveChangesAsync();
+
+                        mensagem.Titulo = "Info";
+                        mensagem.Corpo = "O cadastro foi efectuado com sucesso !!!";
+                    }
+
                 }
                 else
                 {
@@ -74,7 +89,7 @@
                     mensagem.Titulo = "";
                     mensagem.Corpo = "Erro, o cadastro não foi efectuado com sucesso !!!";
                 }
-                
+
                 return mensagem;
 
             }
@@ -171,28 +186,28 @@
 
                             }).AsNoTracking().Where(p => p.Titulo.Contains(filter) || p.LeitorNome.Contains(filter)).ToList();
                 }
-            
+
                 else
                 {
-                    
-                
-                return (from em in db.Emprestimos
-                        join li in db.Livros on em.IdLivro equals li.Id
-                        join le in db.Leitores on em.IdLeitor equals le.Id
-                        join au in db.Autores on li.IdAutor equals au.Id
-                        select new EmprestimoView
-                        {
-                            Id = em.Id,
-                            IdLivro = em.IdLivro,
-                            IdLeitor = em.IdLeitor,
-                            DInicio = em.DInicio,
-                            DFIm = em.DFIm,
-                            
-                            Capa = li.Capa,
-                            Titulo = li.Titulo,
-                            Autor = au.Nome
-                            
-                        }).AsNoTracking().ToList();
+
+
+                    return (from em in db.Emprestimos
+                            join li in db.Livros on em.IdLivro equals li.Id
+                            join le in db.Leitores on em.IdLeitor equals le.Id
+                            join au in db.Autores on li.IdAutor equals au.Id
+                            select new EmprestimoView
+                            {
+                                Id = em.Id,
+                                IdLivro = em.IdLivro,
+                                IdLeitor = em.IdLeitor,
+                                DInicio = em.DInicio,
+                                DFIm = em.DFIm,
+
+                                Capa = li.Capa,
+                                Titulo = li.Titulo,
+                                Autor = au.Nome
+
+                            }).AsNoTracking().ToList();
                 }
             }
         }
