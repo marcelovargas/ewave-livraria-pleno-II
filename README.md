@@ -47,7 +47,7 @@ Para a criação da base de datos, usei o CODE FIRST.
 ### Resolução as problemas.
 
 - Usar dois DbContext, 
-- Usar o script para gerar a BD.
+- Usar o backup para gerar a BD (bd.rar).
 
 ### usuario de teste
 usuario: 	ewave@teste.com 
