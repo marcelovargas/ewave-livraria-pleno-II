@@ -31,6 +31,13 @@
         }
 
         //GET: Reservas
+        /// <summary>
+        /// Retorna uma lista dos livros reservados pelo leitor.
+        /// (usuario atual).
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="sortExpression"></param>
+        /// <returns></returns>
         public IActionResult Index(int page = 1, string sortExpression = "Titulo")
         {
             var qry = _context.ListOfDetails();
@@ -88,7 +95,6 @@
 
             return this.RedirectToAction("Index");
         }
-
 
 
 
@@ -162,6 +168,10 @@
             return objeto != null;
         }
 
+        /// <summary>
+        /// Obtiene o usuario atual logueado.
+        /// </summary>
+        /// <returns></returns>
         public string CurrentUser()
         {
             ClaimsPrincipal currentUser = this.User;
