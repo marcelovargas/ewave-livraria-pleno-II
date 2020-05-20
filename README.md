@@ -20,15 +20,33 @@ Tendo em vista essa necessidade, foi visto a necessidade de desenvolver um siste
  
  
  
- ## 
-- ASp.net Core, APP web para dois tipos de usuario:
-	- Administrador
-	- Leitor
+ ## Soluçaõ
  
- - SqlServer Xpress para BD
- - DDD
- - Bootrap,
- - Doc Swagger para webapi 
+Na abordagem adotada para poder fornecer uma solução de computador para a biblioteca, era criar um aplicativo da Web, determinando dois tipos de usuário (roles).
+- Administrador, no comando dos emprestimos / devolução dos livros.
+- Leitor, ele pode reservar os livros, para depois pegarlos com o administrador.
+
+As ferramentas informaticas, linguagem, metodologias e estructura a usar foram:
+ 
+- ASp.net Core c#
+- SqlServer Xpress para BD
+- Estructura baseada no DDD
+- Bootrap,
+- Docs Swagger para webapi 
+
+Para a criação da base de datos, usei o CODE FIRST.
+ 
+ ### Problemas
+ 
+ - Perder muito tempo, ao não poder concluir o tema dos roles, problema de usar o dbcontext com o entity, (solução usar dois dbcontext)
+ - Ao ter dois dbcontext o CODE FIRST, gera as tabelas em dois tempos, (Solução usar o script para criar o BD).
+
+
+### usuario de prueba
+usuario: 	ewave@teste.com 
+password:	Asd123. 
+ 
+ 
  
  
  
