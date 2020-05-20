@@ -37,15 +37,8 @@
 
         public async Task<List<Reserva>> List()
         {
-            var list = await _IReserva.List();
-            if (list != null)
-            {
-                return list;
-            }
-            else
-            {
-                return new List<Reserva>();
-            }
+            return await _IReserva.List();
+            
         }
 
         public IList<ReservaView> List(string leitor)

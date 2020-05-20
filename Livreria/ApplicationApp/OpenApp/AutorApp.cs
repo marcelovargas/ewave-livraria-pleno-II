@@ -32,15 +32,8 @@
 
         public async Task<List<Autor>> List()
         {
-            var list = await _IAutor.List();
-            if (list != null)
-            {
-                return list;
-            }
-            else
-            {
-                return new List<Autor>();
-            }
+            return await _IAutor.List();
+            
         }
 
         public IList<Autor> List(string filter)

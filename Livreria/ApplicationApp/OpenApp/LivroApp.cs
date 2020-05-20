@@ -31,15 +31,10 @@
 
         public async Task<List<Livro>> List()
         {
-            var list = await _ILivro.List();
-            if (list != null)
-            {
-                return list;
-            }
-            else
-            {
-                return new List<Livro>();
-            }
+            return await _ILivro.List();
+          
+                
+          
         }
 
         public IList<Livro> List(string filter)

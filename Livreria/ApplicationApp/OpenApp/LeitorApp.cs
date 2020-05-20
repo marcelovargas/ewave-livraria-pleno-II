@@ -37,15 +37,8 @@ namespace ApplicationApp.OpenApp
 
         public async Task<List<Leitor>> List()
         {
-            var list = await _ILeitor.List();
-            if (list != null)
-            {
-                return list;
-            }
-            else
-            {
-                return new List<Leitor>();
-            }
+            return await _ILeitor.List();
+            
         }
 
         public async Task Update(Leitor Objeto)

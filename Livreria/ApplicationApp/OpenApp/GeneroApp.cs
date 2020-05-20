@@ -31,15 +31,10 @@
 
         public async Task<List<Genero>> List()
         {
-            var list = await _IGenero.List();
-            if (list != null)
-            {
-                return list;
-            }
-            else
-            {
-                return new List<Genero>();
-            }
+            return await _IGenero.List();
+           
+                
+           
         }
 
         public IList<Genero> List(string filter)

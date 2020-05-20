@@ -32,15 +32,7 @@
 
         public async Task<List<Instituicao>> List()
         {
-            var list = await _IInstituicao.List();
-            if (list != null)
-            {
-                return list;
-            }
-            else
-            {
-                return new List<Instituicao>();
-            }
+            return await _IInstituicao.List();
         }
 
         public IList<Instituicao> List(string filter)
