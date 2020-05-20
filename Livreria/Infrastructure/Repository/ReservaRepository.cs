@@ -36,7 +36,7 @@
                 else
                 {
                     mensagem.Titulo = "";
-                    mensagem.Corpo = "Erro, o cadastro não foi efectuado com sucesso !!!";
+                    mensagem.Corpo = "Erro, o livro não esta dísponivel. !!!";
                 }
 
                 return mensagem;
