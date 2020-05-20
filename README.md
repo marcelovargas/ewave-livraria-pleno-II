@@ -39,13 +39,14 @@ Para a criação da base de datos, usei o CODE FIRST.
  ### Problemas e recomendações
  
  - Perder muito tempo, ao não poder concluir o tema dos roles.
- - O CODE FIRST, gera as tabelas em dois tempos, (por os dois dbcontext).
+ - Controle de usuarios, não concluido. Apenas  para ter o cadastro/ acesso. 
+ - O CODE FIRST, gera as tabelas em dois tempos, por o problema nas relaçoes dos dois DbContext.
  - Usar o usuario de teste.
  
 
 ### Resolução as problemas.
 
-- Usar dois dbcontext.
+- Usar dois DbContext, 
 - Usar o script para gerar a BD.
 
 ### usuario de teste
