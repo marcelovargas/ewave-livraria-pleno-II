@@ -18,10 +18,13 @@
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public async Task AddWithControl(Emprestimo objeto)
+        public async Task<Mensagem> AddWithControl(Emprestimo objeto)
         {
             using (var db = new ContextBase(_OptionsBuilder))
             {
+                Mensagem mensagem = new Mensagem();
+                
+
                 int cant = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor && x.DFIm == null).Count();
 
                 //var atra = db.Emprestimos.Where(x => x.IdLeitor == objeto.IdLeitor)
@@ -35,8 +38,45 @@
                 {
                     await db.Emprestimos.AddAsync(objeto);
                     await db.SaveChangesAsync();
+
+                    mensagem.Titulo = "Info";
+                    mensagem.Corpo = "O cadastro foi efectuado com sucesso !!!";
+                    
+                }
+                else
+                {
+                    mensagem.Titulo = "Erro";
+                    mensagem.Corpo = "Limite excedido, o leitor registrou 2 livros em sua posse.";
                 }
 
+                return mensagem;
+
+            }
+        }
+
+        public async Task<Mensagem> Update_msg(Emprestimo objeto)
+        {
+            using (var db = new ContextBase(_OptionsBuilder))
+            {
+                Mensagem mensagem = new Mensagem();
+
+                try
+                {
+                    db.Update(objeto);
+                    await db.SaveChangesAsync();
+
+                    mensagem.Titulo = "Info";
+                    mensagem.Corpo = "O cadastro foi efectuado com sucesso !!!";
+                }
+                catch (Exception)
+                {
+
+                    mensagem.Titulo = "Erro";
+                    mensagem.Corpo = "Erro, o cadastro não foi efectuado com sucesso !!!";
+                }
+                
+
+                return mensagem;
 
             }
         }

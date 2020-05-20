@@ -47,9 +47,9 @@
 
         }
 
-        public async Task<IActionResult> BookReturn (string filter, int page = 1, string sortExpression = "Titulo")
+        public async Task<IActionResult> BookReturn(string filter, int page = 1, string sortExpression = "Titulo")
         {
-            var qry = _IEmprestimoApp.ListWithDetails(filter).Where(x=> x.DFIm == null);
+            var qry = _IEmprestimoApp.ListWithDetails(filter).Where(x => x.DFIm == null);
             var model = PagingList.Create(qry, 5, page, sortExpression, "Titulo");
             model.RouteValue = new RouteValueDictionary
             {  { "filter", filter}    };
@@ -94,7 +94,7 @@
         {
             var emprestimo = new Emprestimo()
             {
-               
+
                 DInicio = DateTime.Now,
                 IdLeitor = view.IdLeitor,
                 IdLivro = view.IdLivro,
@@ -102,7 +102,9 @@
             };
             try
             {
-                await _IEmprestimoApp.AddWithControl(emprestimo);
+                var message = await _IEmprestimoApp.AddWithControl(emprestimo);
+                TempData["title"] = message.Titulo;
+                TempData["message"] = message.Corpo;
             }
             catch (Exception)
             {
@@ -134,9 +136,16 @@
         {
             var emprestimo = _IEmprestimoApp.GetEntityById((int)id);
             emprestimo.DFIm = DateTime.Now;
-            await _IEmprestimoApp.Update(emprestimo);
-            return RedirectToAction(nameof(Index));
+            
+            var message = await _IEmprestimoApp.Update_msg(emprestimo);
+
+            TempData["title"] = message.Titulo;
+            TempData["message"] = message.Corpo;
+
+            return RedirectToAction(nameof(BookReturn));
         }
+
+
         private ReservaView ToView(Reserva reserva)
         {
             var livro = _ILivroApp.GetEntityById(reserva.IdLivro);
@@ -165,7 +174,7 @@
 
         private async Task<bool> EmprestimoExists(int id)
         {
-            var objeto =  _IEmprestimoApp.GetEntityById(id);
+            var objeto = _IEmprestimoApp.GetEntityById(id);
 
             return objeto != null;
         }

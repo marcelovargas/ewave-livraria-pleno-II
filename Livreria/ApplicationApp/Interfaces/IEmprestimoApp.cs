@@ -9,6 +9,8 @@
         IList<ReservaView> ListofReserved(string option);
 
         IList<EmprestimoView> ListWithDetails(string filter);
-        Task AddWithControl(Emprestimo emprestimo);
+        Task<Mensagem> AddWithControl(Emprestimo emprestimo);
+
+        Task<Mensagem> Update_msg (Emprestimo emprestimo);
     }
 }

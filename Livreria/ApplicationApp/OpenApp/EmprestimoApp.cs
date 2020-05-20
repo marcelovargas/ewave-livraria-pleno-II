@@ -18,9 +18,10 @@
             await _IEmprestimo.Add(Objeto);
         }
 
-        public async Task AddWithControl(Emprestimo emprestimo)
+        public async Task<Mensagem> AddWithControl(Emprestimo emprestimo)
         {
-            await _IEmprestimo.AddWithControl(emprestimo);
+            return await _IEmprestimo.AddWithControl(emprestimo);
+
         }
 
         public async Task Delete(Emprestimo Objeto)
@@ -37,15 +38,8 @@
 
         public async Task<List<Emprestimo>> List()
         {
-            var list = await _IEmprestimo.List();
-            if (list != null)
-            {
-                return list;
-            }
-            else
-            {
-                return new List<Emprestimo>();
-            }
+            return await _IEmprestimo.List();
+            
         }
 
         public IList<ReservaView> ListofReserved(string option)
@@ -60,7 +54,12 @@
 
         public async Task Update(Emprestimo Objeto)
         {
-            await _IEmprestimo.Update(Objeto);
+             await _IEmprestimo.Update(Objeto);
+        }
+         
+        public async Task<Mensagem> Update_msg(Emprestimo Objeto)
+        {
+           return  await _IEmprestimo.Update_msg(Objeto);
         }
     }
 }
