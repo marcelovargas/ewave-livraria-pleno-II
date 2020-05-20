@@ -152,12 +152,18 @@
             return View(reserva);
         }
 
-
+        /// <summary>
+        /// Elimina uma reserva.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int id)
         {
             var reserva = _context.GetEntityById(id);
             await _context.Delete(reserva);
 
+            TempData["title"] = "Info";
+            TempData["message"] = "Reserva cancelada.";
             return RedirectToAction(nameof(Index));
         }
 

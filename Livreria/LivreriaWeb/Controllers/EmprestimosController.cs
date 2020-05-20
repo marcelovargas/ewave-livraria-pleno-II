@@ -135,11 +135,20 @@
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Cancela uma reserva.
+        /// False => que naõ esta ativa para ser atendida.
+        /// True  => ativa para ser atendida.
+        /// </summary>
+        /// <param name="id">Id da Reserva</param>
+        /// <returns></returns>
         public async Task<IActionResult> CancelConfirmed(int? id)
         {
             var reserva = _IReservaApp.GetEntityById((int)id);
             reserva.Ativo = false;
             await _IReservaApp.Update(reserva);
+            TempData["title"] = "Info";
+            TempData["message"] = "Reserva cancelada.";
             return RedirectToAction(nameof(Index));
         }
 

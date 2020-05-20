@@ -348,6 +348,15 @@
             <param name="view"></param>
             <returns></returns>
         </member>
+        <member name="M:LivreriaWeb.Controllers.EmprestimosController.CancelConfirmed(System.Nullable{System.Int32})">
+            <summary>
+            Cancela uma reserva.
+            False => que naõ esta ativa para ser atendida.
+            True  => ativa para ser atendida.
+            </summary>
+            <param name="id">Id da Reserva</param>
+            <returns></returns>
+        </member>
         <member name="M:LivreriaWeb.Controllers.EmprestimosController.BookSave(System.Nullable{System.Int32})">
             <summary>
             Cadastra a devolução do Livro.
@@ -467,6 +476,13 @@
         <member name="M:LivreriaWeb.Controllers.ReservasController.Create(System.Nullable{System.Int32})">
             <summary>
             Cadastra uma reserva
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LivreriaWeb.Controllers.ReservasController.Delete(System.Int32)">
+            <summary>
+            Elimina uma reserva.
             </summary>
             <param name="id"></param>
             <returns></returns>
