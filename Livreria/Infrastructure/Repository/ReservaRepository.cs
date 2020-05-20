@@ -35,7 +35,7 @@
                 }
                 else
                 {
-                    mensagem.Titulo = "Erro";
+                    mensagem.Titulo = "";
                     mensagem.Corpo = "Erro, o cadastro não foi efectuado com sucesso !!!";
                 }
 
@@ -65,8 +65,6 @@
         }
 
         
-        
-
         IList<ReservaView> IReserva.List(string leitor)
         {
             using (var db = new ContextBase(_OptionsBuilder))

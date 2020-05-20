@@ -47,6 +47,14 @@
 
         }
 
+        /// <summary>
+        /// Retorna a lista dos livros que forom emprestadas.
+        /// para ser devueltos.
+        /// </summary>
+        /// <param name="filter"> filtro</param>
+        /// <param name="page">pagina</param>
+        /// <param name="sortExpression">ordem</param>
+        /// <returns></returns>
         public async Task<IActionResult> BookReturn(string filter, int page = 1, string sortExpression = "Titulo")
         {
             var qry = _IEmprestimoApp.ListWithDetails(filter).Where(x => x.DFIm == null);
@@ -88,6 +96,13 @@
         }
 
         //POST: Emprestimos/Create
+        /// <summary>
+        /// Cria um cadastro de emprestamo
+        /// Atualiza o cadastro de reserva, para dizer que ja foi 
+        /// atendida.
+        /// </summary>
+        /// <param name="view"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ReservaView view)
@@ -112,6 +127,7 @@
                 return RedirectToAction(nameof(Index));
             }
 
+            
             var reserva = _IReservaApp.GetEntityById(view.Id);
             reserva.Ativo = false;
             await _IReservaApp.Update(reserva);
@@ -128,7 +144,7 @@
         }
 
         /// <summary>
-        /// Devolver Livro á Livreria
+        /// Cadastra a devolução do Livro.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -145,7 +161,11 @@
             return RedirectToAction(nameof(BookReturn));
         }
 
-
+        /// <summary>
+        /// Tranforma o dado para mostrar na view.
+        /// </summary>
+        /// <param name="reserva"></param>
+        /// <returns></returns>
         private ReservaView ToView(Reserva reserva)
         {
             var livro = _ILivroApp.GetEntityById(reserva.IdLivro);

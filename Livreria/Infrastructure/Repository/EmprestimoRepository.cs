@@ -45,8 +45,8 @@
                 }
                 else
                 {
-                    mensagem.Titulo = "Erro";
-                    mensagem.Corpo = "Limite excedido, o leitor registrou 2 livros em sua posse.";
+                    mensagem.Titulo = "";
+                    mensagem.Corpo = "Erro, limite excedido, o leitor registrou 2 livros em sua posse.";
                 }
 
                 return mensagem;
@@ -71,11 +71,10 @@
                 catch (Exception)
                 {
 
-                    mensagem.Titulo = "Erro";
+                    mensagem.Titulo = "";
                     mensagem.Corpo = "Erro, o cadastro não foi efectuado com sucesso !!!";
                 }
                 
-
                 return mensagem;
 
             }
